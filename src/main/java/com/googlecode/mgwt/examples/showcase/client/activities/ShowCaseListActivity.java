@@ -95,7 +95,7 @@ public class ShowCaseListActivity extends MGWTAbstractActivity {
             Request response = builder.sendRequest(null, new RequestCallback() {
                 public void onError(Request request, Throwable exception) {
                     // Couldn't connect to server (could be timeout, SOP violation, etc.)
-                    System.out.println(exception.toString());
+                   // System.out.println(exception.toString());
                 }
 
                 public void onResponseReceived(Request request, Response response) {
@@ -107,11 +107,11 @@ public class ShowCaseListActivity extends MGWTAbstractActivity {
                         String toString= response.toString();
 
 
-                        System.out.println("responseText: "+responseText);
-                        System.out.println("headers: "+headers);
-                        System.out.println("statusTest: "+statusText);
-                        System.out.println("statusCode: "+statusCode);
-                        System.out.println("toString: "+toString);
+//                        System.out.println("responseText: "+responseText);
+//                        System.out.println("headers: "+headers);
+//                        System.out.println("statusTest: "+statusText);
+//                        System.out.println("statusCode: "+statusCode);
+//                        System.out.println("toString: "+toString);
 
                         clientFactory.getStationUtil().setAllStationXml(responseText);
                     } else {

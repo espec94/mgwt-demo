@@ -50,9 +50,10 @@ public class UIViewImpl implements UIView {
 		headerBackButton = new HeaderButton();
 		headerBackButton.setBackButton(true);
 		headerPanel.setLeftWidget(headerBackButton);
-		headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
+//		headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
+        headerBackButton.setVisible(true);
 
-		ScrollPanel scrollPanel = new ScrollPanel();
+        ScrollPanel scrollPanel = new ScrollPanel();
 
 		cellListWithHeader = new CellList<Item>(new BasicCell<Item>() {
 

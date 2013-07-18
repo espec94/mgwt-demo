@@ -52,7 +52,8 @@ public class AnimationViewGwtImpl implements AnimationView {
 
 		headerPanel.setLeftWidget(headerBackButton);
 		headerBackButton.setBackButton(true);
-		headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
+//		headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
+        headerBackButton.setVisible(true);
 
 		main.add(headerPanel);
 
