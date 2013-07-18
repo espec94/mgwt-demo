@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class XmlParser {
 
-    public void parseMessage(String messageXml, Map stationList) {
+    public static void parseMessage(String messageXml, Map stationList) {
         try {
             // parse the XML document into a DOM
             Document messageDom = XMLParser.parse(messageXml);
@@ -19,7 +19,8 @@ public class XmlParser {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 final Element node = (Element) nodeList.item(i);
                 String stationDesc = messageDom.getElementsByTagName("StationDesc").item(i).getFirstChild().getNodeValue();
-                String stationAlias = messageDom.getElementsByTagName("StationAlias").item(i).getFirstChild().getNodeValue();
+                //String stationAlias = messageDom.getElementsByTagName("StationAlias").item(i).getFirstChild().getNodeValue();
+                String stationAlias = "";
                 String stationLatitude = messageDom.getElementsByTagName("StationLatitude").item(i).getFirstChild().getNodeValue();
                 String stationLongitude = messageDom.getElementsByTagName("StationLongitude").item(i).getFirstChild().getNodeValue();
                 String stationCode = messageDom.getElementsByTagName("StationCode").item(i).getFirstChild().getNodeValue();

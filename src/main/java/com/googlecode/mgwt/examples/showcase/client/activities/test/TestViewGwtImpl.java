@@ -1,8 +1,10 @@
 package com.googlecode.mgwt.examples.showcase.client.activities.test;
 
 import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.BasicCell;
 import com.googlecode.mgwt.examples.showcase.client.model.Station;
+import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -14,11 +16,22 @@ import java.util.List;
 public class TestViewGwtImpl implements TestView {
 
     private LayoutPanel main;
-    private HeaderButton forwardButton;
+    private HeaderButton headerBackButton;
     private HeaderPanel headerPanel;
     private CellListWithHeader<Station> cellList;
 
-    public void TestViewGwtImpl() {
+    public TestViewGwtImpl() {
+        main = new LayoutPanel();
+        headerPanel = new HeaderPanel();
+        headerBackButton = new HeaderButton();
+
+
+        headerPanel.setLeftWidget(headerBackButton);
+        headerBackButton.setBackButton(true);
+        headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
+
+        main.add(headerPanel);
+
         cellList = new CellListWithHeader<Station>(new BasicCell<Station>() {
 
             @Override
@@ -40,6 +53,11 @@ public class TestViewGwtImpl implements TestView {
         main.add(scrollPanel);
     }
 
+
+    @Override
+    public HasTapHandlers getBackButton() {
+        return headerBackButton;
+    }
 
     @Override
     public void setTitle(String title) {

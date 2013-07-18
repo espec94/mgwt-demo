@@ -1,7 +1,6 @@
 package com.googlecode.mgwt.examples.showcase.client.common;
 
 import com.googlecode.mgwt.examples.showcase.client.model.Station;
-import com.googlecode.mgwt.examples.showcase.client.request.ServerRequestUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,24 +9,21 @@ import java.util.TreeMap;
 
 public class StationUtil {
 
-    private Map<String, Station> mapOfStations = new TreeMap<String, Station>();
+    private static Map<String, Station> mapOfStations = new TreeMap<String, Station>();
 
-    private XmlParser parser = new XmlParser();
-
-    private String allStationsXml;
+    private static String allStationsXml;
 
     public StationUtil() {
-        initAllStationInformation();
     }
 
-    private void initAllStationInformation() {
-//        System.out.println("initializing StationUtil");
-//        ServerRequestUtil.GetRequest(ApplicationConstants.BASE_URL + "/" + ApplicationConstants.ALL_STATIONS);
+    public static void setAllStationXml(String allStationsXml) {
+        if (StationUtil.allStationsXml == null) {
+            StationUtil.allStationsXml = allStationsXml;
+            XmlParser.parseMessage(allStationsXml, mapOfStations);
+        }
     }
 
     public List<Station> getAllStation() {
-        parser.parseMessage(allStationsXml, mapOfStations);
-
         List<Station> listStation = new ArrayList<Station>();
 
         for (Map.Entry<String, Station> entry : mapOfStations.entrySet()) {

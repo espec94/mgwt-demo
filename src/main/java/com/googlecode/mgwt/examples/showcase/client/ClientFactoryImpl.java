@@ -57,6 +57,7 @@ import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderView
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarView;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.test.TestView;
+import com.googlecode.mgwt.examples.showcase.client.activities.test.TestViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.common.StationUtil;
 
 /**
@@ -71,6 +72,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private UIView uiView;
 	private AboutView aboutView;
 	private AnimationView animationView;
+    private TestView testView;
 	private AnimationDoneView animationDoneView;
 	private ScrollWidgetView scrollWidgetView;
 	private ElementsView elementsView;
@@ -198,7 +200,10 @@ public class ClientFactoryImpl implements ClientFactory {
 
     @Override
     public TestView getTestView() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        if(testView == null){
+            testView = new TestViewGwtImpl();
+        }
+        return testView;
     }
 
     @Override
@@ -266,13 +271,10 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
     @Override
-    public void setStations(StationUtil util) {
-        //To change body of implemented methods use File | Settings | File Templates.
-        stationUtil = util;
-    }
-
-    @Override
     public StationUtil getStationUtil() {
+        if(stationUtil == null) {
+            stationUtil = new StationUtil();
+        }
         return stationUtil;
     }
 

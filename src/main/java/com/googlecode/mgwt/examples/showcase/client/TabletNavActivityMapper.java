@@ -31,6 +31,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.Scro
 import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.test.TestActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.test.TestPlace;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 
 public class TabletNavActivityMapper implements ActivityMapper {
@@ -44,6 +46,7 @@ public class TabletNavActivityMapper implements ActivityMapper {
 	private UIActivity uiActivity;
 	private ShowCaseListActivity showCaseListActivity;
 	private AnimationActivity animationActivity;
+    private TestActivity testActivity;
 
 	private Activity getUIActivity() {
 		if (uiActivity == null) {
@@ -66,6 +69,15 @@ public class TabletNavActivityMapper implements ActivityMapper {
 		return animationActivity;
 	}
 
+    private Activity getTestActivity() {
+        if(testActivity == null)  {
+            testActivity = new TestActivity(clientFactory);
+        }
+        return testActivity;
+
+    }
+
+
 	@Override
 	public Activity getActivity(Place place) {
 		if (place instanceof HomePlace || place instanceof AboutPlace) {
@@ -86,6 +98,10 @@ public class TabletNavActivityMapper implements ActivityMapper {
 				|| place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace || place instanceof AnimationSwapPlace || place instanceof AnimationCubePlace) {
 			return getAnimationActicity();
 		}
+
+        if(place instanceof TestPlace) {
+            return getTestActivity();
+        }
 		return new ShowCaseListActivity(clientFactory);
 	}
 }

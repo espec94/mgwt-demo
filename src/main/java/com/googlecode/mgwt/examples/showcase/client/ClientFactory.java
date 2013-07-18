@@ -41,60 +41,57 @@ import com.googlecode.mgwt.examples.showcase.client.common.StationUtil;
 
 /**
  * @author Daniel Kurka
- *
  */
 public interface ClientFactory {
-	public ShowCaseListView getHomeView();
+    public ShowCaseListView getHomeView();
 
-	public EventBus getEventBus();
+    public EventBus getEventBus();
 
-	public PlaceController getPlaceController();
+    public PlaceController getPlaceController();
 
-	/**
-	 * @return
-	 */
-	public UIView getUIView();
+    /**
+     * @return
+     */
+    public UIView getUIView();
 
-	public AboutView getAboutView();
+    public AboutView getAboutView();
 
-	public AnimationView getAnimationView();
+    public AnimationView getAnimationView();
 
-	public AnimationDoneView getAnimationDoneView();
+    public AnimationDoneView getAnimationDoneView();
 
-	public ScrollWidgetView getScrollWidgetView();
+    public ScrollWidgetView getScrollWidgetView();
 
-	public ElementsView getElementsView();
+    public ElementsView getElementsView();
 
-	public ButtonBarView getButtonBarView();
+    public ButtonBarView getButtonBarView();
 
-	public SearchBoxView getSearchBoxView();
+    public SearchBoxView getSearchBoxView();
 
-	public TabBarView getTabBarView();
+    public TabBarView getTabBarView();
 
-	public ButtonView getButtonView();
+    public ButtonView getButtonView();
 
     public TestView getTestView();
 
-	/**
-	 *
-	 */
-	public PopupView getPopupView();
+    /**
+     *
+     */
+    public PopupView getPopupView();
 
-	public ProgressBarView getProgressBarView();
+    public ProgressBarView getProgressBarView();
 
-	public SliderView getSliderView();
+    public SliderView getSliderView();
 
-	public CarouselView getCarouselHorizontalView();
+    public CarouselView getCarouselHorizontalView();
 
-	public PullToRefreshDisplay getPullToRefreshDisplay();
+    public PullToRefreshDisplay getPullToRefreshDisplay();
 
-	public ProgressIndicatorView getProgressIndicatorView();
+    public ProgressIndicatorView getProgressIndicatorView();
 
-	public FormsView getFormsView();
+    public FormsView getFormsView();
 
-	public GroupedCellListView getGroupedCellListView();
-
-    public void setStations(StationUtil util);
+    public GroupedCellListView getGroupedCellListView();
 
     public StationUtil getStationUtil();
 }

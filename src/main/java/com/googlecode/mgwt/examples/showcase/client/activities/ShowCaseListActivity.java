@@ -24,8 +24,8 @@ import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
+import com.googlecode.mgwt.examples.showcase.client.activities.test.TestPlace;
 import com.googlecode.mgwt.examples.showcase.client.common.ApplicationConstants;
-import com.googlecode.mgwt.examples.showcase.client.places.TestPlace;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
@@ -113,6 +113,7 @@ public class ShowCaseListActivity extends MGWTAbstractActivity {
                         System.out.println("statusCode: "+statusCode);
                         System.out.println("toString: "+toString);
 
+                        clientFactory.getStationUtil().setAllStationXml(responseText);
                     } else {
                         // Handle the error.  Can get the status text from response.getStatusText()
                         System.out.println("HTTP error code:" + response.getStatusCode() + "," + response.getStatusText());

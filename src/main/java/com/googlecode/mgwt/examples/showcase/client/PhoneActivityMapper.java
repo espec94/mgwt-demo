@@ -61,6 +61,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderActi
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.test.TestActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.test.TestPlace;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 
 /**
@@ -92,6 +94,10 @@ public class PhoneActivityMapper implements ActivityMapper {
 		if (place instanceof AnimationPlace) {
 			return new AnimationActivity(clientFactory);
 		}
+
+        if (place instanceof TestPlace){
+            return new TestActivity(clientFactory);
+        }
 
 		if (place instanceof ScrollWidgetPlace) {
 			return new ScrollWidgetActivity(clientFactory);
