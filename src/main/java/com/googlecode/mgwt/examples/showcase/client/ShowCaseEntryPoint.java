@@ -69,7 +69,7 @@ public class ShowCaseEntryPoint implements EntryPoint {
 
         createPhoneDisplay(clientFactory);
 
-        AppHistoryObserver historyObserver = new AppHistoryObserver();
+        AppHistoryObserver historyObserver = new AppHistoryObserver(clientFactory);
 
         MGWTPlaceHistoryHandler historyHandler = new MGWTPlaceHistoryHandler(historyMapper, historyObserver);
 

@@ -74,7 +74,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	private UIView uiView;
 	private AboutView aboutView;
 	private AnimationView animationView;
-    private StationSummaryView testView;
 	private AnimationDoneView animationDoneView;
 	private ScrollWidgetView scrollWidgetView;
 	private ElementsView elementsView;
@@ -92,6 +91,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private CarouselView carouselView;
 	private GroupedCellListGwtImpl groupedCellListView;
     private StationUtil stationUtil;
+    private StationSummaryView stationSummaryView;
     private StationDetailsView stationDetailsView;
 
 	public ClientFactoryImpl() {
@@ -202,14 +202,6 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
     @Override
-    public StationSummaryView getTestView() {
-        if(testView == null){
-            testView = new StationSummaryViewGwtImpl();
-        }
-        return testView;
-    }
-
-    @Override
 	public PopupView getPopupView() {
 		if (popupView == null) {
 			popupView = new PopupViewGwtImpl();
@@ -282,8 +274,15 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public StationDetailsView getStationDetailsView(){
+    public StationSummaryView getStationSummaryView() {
+        if(stationSummaryView == null){
+            stationSummaryView = new StationSummaryViewGwtImpl();
+        }
+        return stationSummaryView;
+    }
 
+    @Override
+    public StationDetailsView getStationDetailsView(){
         if(stationDetailsView ==null){
             stationDetailsView = new StationDetailsViewGwtImpl();
         }

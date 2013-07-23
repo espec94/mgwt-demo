@@ -73,7 +73,7 @@ public interface ClientFactory {
 
     public ButtonView getButtonView();
 
-    public StationSummaryView getTestView();
+    public StationSummaryView getStationSummaryView();
 
     /**
      *

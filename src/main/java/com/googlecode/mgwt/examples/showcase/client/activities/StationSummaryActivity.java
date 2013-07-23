@@ -27,9 +27,9 @@ public class StationSummaryActivity extends MGWTAbstractActivity {
     @Override
     public void start(AcceptsOneWidget panel, final EventBus eventBus) {
         super.start(panel, eventBus);
-        StationSummaryView view = clientFactory.getTestView();
+        StationSummaryView view = clientFactory.getStationSummaryView();
 
-        view.setTitle("Test");
+        view.setTitle("Station List");
         view.renderItems(clientFactory.getStationUtil().getAllStation());
 
         addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
@@ -46,7 +46,7 @@ public class StationSummaryActivity extends MGWTAbstractActivity {
 
                     @Override
                     public void onCellSelected(CellSelectedEvent event) {
-                        int index = event.getIndex();
+//                        int index = event.getIndex();
                         Document messageDom = XMLParser.parse(event.getTargetElement().toString());
                         String stationName = messageDom.getElementsByTagName("div").item(0).getFirstChild().getNodeValue();
                         StationSelectedEvent.fire(eventBus, stationName);

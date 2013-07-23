@@ -87,10 +87,12 @@ public class ShowCaseListActivity extends MGWTAbstractActivity {
             }
         }));
 
+
         panel.setWidget(view);
 
-        System.out.println("Sending HTTP request now...");
-        RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, ApplicationConstants.BASE_URL + "/" + ApplicationConstants.ALL_STATIONS);
+        String requestURI = ApplicationConstants.BASE_URL + "/" + ApplicationConstants.ALL_STATIONS;
+        System.out.println("Sending HTTP request: " + requestURI);
+        RequestBuilder builder = new RequestBuilder(RequestBuilder.GET,requestURI );
 
         try {
             builder.setTimeoutMillis(5000);
@@ -110,7 +112,7 @@ public class ShowCaseListActivity extends MGWTAbstractActivity {
                         String toString= response.toString();
 
 
-//                        System.out.println("responseText: "+responseText);
+                        System.out.println("all stations: "+responseText);
 //                        System.out.println("headers: "+headers);
 //                        System.out.println("statusTest: "+statusText);
 //                        System.out.println("statusCode: "+statusCode);

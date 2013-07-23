@@ -1,5 +1,7 @@
 package com.googlecode.mgwt.examples.showcase.client.activities;
 
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
@@ -10,25 +12,29 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
 
     private final ClientFactory clientFactory;
 
-    public StationDetailsActivity (ClientFactory clientFactory) {
+    public StationDetailsActivity(ClientFactory clientFactory) {
         this.clientFactory = clientFactory;
     }
 
     @Override
     public void start(AcceptsOneWidget panel, final EventBus eventBus) {
         StationDetailsView view = clientFactory.getStationDetailsView();
+        //init train information in tabpanel
+//        view.getTrainListLabel().setText(clientFactory.getStationUtil().getTrainDetailsOfCurrentStation());
 
-//        addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
-//
-//            @Override
-//            public void onTap(TapEvent event) {
-//                ActionEvent.fire(eventBus, ActionNames.ANIMATION_END);
-//
-//            }
-//        }));
+
+        view.getTabpanel().addSelectionHandler(new SelectionHandler<Integer>() {
+            @Override
+            public void onSelection(SelectionEvent<Integer> integerSelectionEvent) {
+                //To change body of implemented methods use File | Settings | File Templates.
+                int tabId = integerSelectionEvent.getSelectedItem();
+                System.out.println("tab selected" + tabId);
+
+            }
+        });
+
 
         panel.setWidget(view);
-
 
     }
 

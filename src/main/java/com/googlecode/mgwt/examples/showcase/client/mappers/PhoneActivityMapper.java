@@ -98,9 +98,7 @@ public class PhoneActivityMapper implements ActivityMapper {
 			return new AnimationActivity(clientFactory);
 		}
 
-        if (place instanceof StationSummaryPlace){
-            return new StationSummaryActivity(clientFactory);
-        }
+
 
 		if (place instanceof ScrollWidgetPlace) {
 			return new ScrollWidgetActivity(clientFactory);
@@ -161,6 +159,10 @@ public class PhoneActivityMapper implements ActivityMapper {
 				|| place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace || place instanceof AnimationSwapPlace || place instanceof AnimationSwapPlace) {
 			return new AnimationDoneActivity(clientFactory);
 		}
+
+        if (place instanceof StationSummaryPlace){
+            return new StationSummaryActivity(clientFactory);
+        }
 
         if (place instanceof StationDetailsPlace){
             return new StationDetailsActivity(clientFactory);
