@@ -219,52 +219,10 @@ public class AppHistoryObserver implements HistoryObserver {
 
             @Override
             public void onStationSelected(StationSelectedEvent event) {
-
-                String stationDesc = event.getStation();
-
-                String requestURL = ApplicationConstants.BASE_URL + "/" + ApplicationConstants.GET_STATION_DATA_BY_NAME + "?" + ApplicationConstants.STATION_DESC + "=" + stationDesc;
-
-                System.out.println("Sending HTTP request:" + requestURL + " to get train details from current station.");
-                RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, requestURL);
-
-                try {
-                    builder.setTimeoutMillis(5000);
-                    Request response = builder.sendRequest(null, new RequestCallback() {
-                        public void onError(Request request, Throwable exception) {
-                            // Couldn't connect to server (could be timeout, SOP violation, etc.)
-                        }
-
-                        public void onResponseReceived(Request request, Response response) {
-                            if (200 == response.getStatusCode()) {
-                                String responseText = response.getText();
-                                String headers = response.getHeadersAsString();
-                                String statusText = response.getStatusText();
-                                int statusCode = response.getStatusCode();
-                                String toString = response.toString();
-
-
-                                System.out.println("all train information: " + responseText);
-//                        System.out.println("headers: "+headers);
-//                        System.out.println("statusTest: "+statusText);
-//                        System.out.println("statusCode: "+statusCode);
-//                        System.out.println("toString: "+toString);
-
-                                clientFactory.getStationUtil().setTrainDetailsOfCurrentStation(responseText);
-
-                            } else {
-                                // Handle the error.  Can get the status text from response.getStatusText()
-                                System.out.println("HTTP error code:" + response.getStatusCode() + "," + response.getStatusText());
-                            }
-                        }
-                    });
-                } catch (RequestException e) {
-                    // Couldn't connect to server
-                }
-
+                System.out.println("AppHistoryObserver received StationSelectedEvent");
+                clientFactory.getStationUtil().setCurrentStation(event.getStation());
                 Place place = new StationDetailsPlace();
                 historyHandler.goTo(place);
-                System.out.println("AppHistoryObserver received StationSelectedEvent");
-
             }
         });
 

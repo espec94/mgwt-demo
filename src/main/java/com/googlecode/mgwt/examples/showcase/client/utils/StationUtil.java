@@ -13,7 +13,7 @@ public class StationUtil {
 
     private static String allStationsXml;
 
-    private String allTrainsXml;
+    private String currentStation;
 
     public StationUtil() {
     }
@@ -35,11 +35,11 @@ public class StationUtil {
         return listStation;
     }
 
-    public void setTrainDetailsOfCurrentStation(String allTrainsXml){
-        this.allTrainsXml = allTrainsXml;
+    public void setCurrentStation(String currentStation){
+        this.currentStation = currentStation;
     }
 
-    public String getTrainDetailsOfCurrentStation(){
-        return allTrainsXml;
+    public String getCurrentStation(){
+        return currentStation;
     }
 }

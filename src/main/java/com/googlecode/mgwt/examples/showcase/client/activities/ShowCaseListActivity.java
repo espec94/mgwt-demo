@@ -100,24 +100,13 @@ public class ShowCaseListActivity extends MGWTAbstractActivity {
             Request response = builder.sendRequest(null, new RequestCallback() {
                 public void onError(Request request, Throwable exception) {
                     // Couldn't connect to server (could be timeout, SOP violation, etc.)
-                   // System.out.println(exception.toString());
+//                   System.out.println(exception.toString());
                 }
 
                 public void onResponseReceived(Request request, Response response) {
                     if (200 == response.getStatusCode()) {
                         String responseText = response.getText();
-                        String headers= response.getHeadersAsString();
-                        String statusText= response.getStatusText();
-                        int statusCode= response.getStatusCode();
-                        String toString= response.toString();
-
-
-                        System.out.println("all stations: "+responseText);
-//                        System.out.println("headers: "+headers);
-//                        System.out.println("statusTest: "+statusText);
-//                        System.out.println("statusCode: "+statusCode);
-//                        System.out.println("toString: "+toString);
-
+//                        System.out.println("all stations: "+responseText);
                         clientFactory.getStationUtil().setAllStationXml(responseText);
                     } else {
                         // Handle the error.  Can get the status text from response.getStatusText()

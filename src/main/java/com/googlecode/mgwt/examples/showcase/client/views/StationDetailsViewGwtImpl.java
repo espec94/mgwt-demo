@@ -21,11 +21,8 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
 public class StationDetailsViewGwtImpl implements StationDetailsView {
 
     private LayoutPanel main;
-
     private TabPanel tabPanel;
-
     private HTML trainListLabel;
-
     private SimplePanel simplePanel;
 
     public StationDetailsViewGwtImpl() {
@@ -90,12 +87,8 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
     }
 
     @Override
-    public HTML getTrainListLabel() {
-        return trainListLabel;
+    public void setTrainList(String trainList) {
+        trainListLabel.setText(trainList);
     }
 
-    @Override
-    public SimplePanel getSimplePanel() {
-        return simplePanel;  //To change body of implemented methods use File | Settings | File Templates.
-    }
 }
