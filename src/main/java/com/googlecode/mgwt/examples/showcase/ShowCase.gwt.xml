@@ -6,10 +6,11 @@
 
 	<inherits name="com.google.gwt.user.User" />
 	<inherits name="com.googlecode.mgwt.MGWT" />
-	<inherits name="com.googlecode.mgwt.linker.Linker" />
+    <inherits name="com.googlecode.mgwt.linker.Linker" />
     <inherits name="com.google.gwt.http.HTTP" />
     <inherits name="com.google.gwt.xml.XML" />
     <inherits name="com.google.gwt.logging.Logging" />
+    <inherits name='com.google.gwt.maps.GoogleMaps'/>
 <!-- 	<inherits name="com.googlecode.mgwt.theme.ExampleTheme"/> -->
 
 
