@@ -38,7 +38,7 @@ import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderView
 import com.googlecode.mgwt.examples.showcase.client.views.StationDetailsView;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarView;
 import com.googlecode.mgwt.examples.showcase.client.views.StationSummaryView;
-import com.googlecode.mgwt.examples.showcase.client.common.StationUtil;
+import com.googlecode.mgwt.examples.showcase.client.utils.StationUtil;
 
 /**
  * @author Daniel Kurka

@@ -1,4 +1,4 @@
-package com.googlecode.mgwt.examples.showcase.client.common;
+package com.googlecode.mgwt.examples.showcase.client.utils;
 
 import com.google.gwt.http.client.URL;
 

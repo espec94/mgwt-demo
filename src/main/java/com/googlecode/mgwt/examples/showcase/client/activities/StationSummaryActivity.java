@@ -1,4 +1,4 @@
-package com.googlecode.mgwt.examples.showcase.client.activities.stationsummary;
+package com.googlecode.mgwt.examples.showcase.client.activities;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;

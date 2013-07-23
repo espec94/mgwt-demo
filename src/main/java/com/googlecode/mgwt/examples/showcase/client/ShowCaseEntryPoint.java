@@ -32,9 +32,6 @@ import com.googlecode.mgwt.ui.client.MGWTSettings.ViewPort;
 import com.googlecode.mgwt.ui.client.MGWTSettings.ViewPort.DENSITY;
 import com.googlecode.mgwt.ui.client.util.SuperDevModeUtil;
 
-/**
- * @author Daniel Kurka
- */
 public class ShowCaseEntryPoint implements EntryPoint {
 
     private void start() {
@@ -70,18 +67,7 @@ public class ShowCaseEntryPoint implements EntryPoint {
         // Start PlaceHistoryHandler with our PlaceHistoryMapper
         AppPlaceHistoryMapper historyMapper = GWT.create(AppPlaceHistoryMapper.class);
 
-//        if (MGWT.getOsDetection().isTablet()) {
-//
-//            // very nasty workaround because GWT does not corretly support
-//            // @media
-//            StyleInjector.inject(AppBundle.INSTANCE.css().getText());
-//
-//            createTabletDisplay(clientFactory);
-//        } else {
-
         createPhoneDisplay(clientFactory);
-
-//        }
 
         AppHistoryObserver historyObserver = new AppHistoryObserver();
 
@@ -93,11 +79,6 @@ public class ShowCaseEntryPoint implements EntryPoint {
 
     private void createPhoneDisplay(ClientFactory clientFactory) {
         AnimatableDisplay display = GWT.create(AnimatableDisplay.class);
-
-        //initial server request to get all station information
-//        StationUtil stationUtil = new StationUtil();
-//        clientFactory.setStations(stationUtil);
-
 
         PhoneActivityMapper appActivityMapper = new PhoneActivityMapper(clientFactory);
 

@@ -60,7 +60,7 @@ import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarView
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.views.StationSummaryView;
 import com.googlecode.mgwt.examples.showcase.client.views.StationSummaryViewGwtImpl;
-import com.googlecode.mgwt.examples.showcase.client.common.StationUtil;
+import com.googlecode.mgwt.examples.showcase.client.utils.StationUtil;
 
 /**
  * @author Daniel Kurka

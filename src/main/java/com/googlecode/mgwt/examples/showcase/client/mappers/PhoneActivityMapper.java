@@ -60,11 +60,11 @@ import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchB
 import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.StationDetailsActivity;
 import com.googlecode.mgwt.examples.showcase.client.places.StationDetailsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.stationsummary.StationSummaryActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.StationSummaryActivity;
 import com.googlecode.mgwt.examples.showcase.client.places.StationSummaryPlace;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 
