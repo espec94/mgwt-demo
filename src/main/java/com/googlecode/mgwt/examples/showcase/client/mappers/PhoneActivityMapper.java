@@ -1,28 +1,29 @@
 /*
  * Copyright 2010 Daniel Kurka
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client;
+package com.googlecode.mgwt.examples.showcase.client.mappers;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
+import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.AboutPlace;
+import com.googlecode.mgwt.examples.showcase.client.places.AboutPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.UIActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.UIPlace;
+import com.googlecode.mgwt.examples.showcase.client.places.UIPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDissolvePlace;
@@ -60,16 +61,16 @@ import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchB
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsPlace;
+import com.googlecode.mgwt.examples.showcase.client.places.StationDetailsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.test.TestActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.test.TestPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.stationsummary.StationSummaryActivity;
+import com.googlecode.mgwt.examples.showcase.client.places.StationSummaryPlace;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
 
 /**
  * @author Daniel Kurka
- * 
+ *
  */
 public class PhoneActivityMapper implements ActivityMapper {
 
@@ -97,8 +98,8 @@ public class PhoneActivityMapper implements ActivityMapper {
 			return new AnimationActivity(clientFactory);
 		}
 
-        if (place instanceof TestPlace){
-            return new TestActivity(clientFactory);
+        if (place instanceof StationSummaryPlace){
+            return new StationSummaryActivity(clientFactory);
         }
 
 		if (place instanceof ScrollWidgetPlace) {

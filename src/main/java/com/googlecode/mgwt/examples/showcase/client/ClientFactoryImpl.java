@@ -18,13 +18,12 @@ package com.googlecode.mgwt.examples.showcase.client;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
-import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
-import com.googlecode.mgwt.examples.showcase.client.activities.AboutView;
-import com.googlecode.mgwt.examples.showcase.client.activities.AboutViewGwtImpl;
-import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
-import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListViewGwtImpl;
-import com.googlecode.mgwt.examples.showcase.client.activities.UIView;
-import com.googlecode.mgwt.examples.showcase.client.activities.UIViewImpl;
+import com.googlecode.mgwt.examples.showcase.client.views.AboutView;
+import com.googlecode.mgwt.examples.showcase.client.views.AboutViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.views.ShowCaseListView;
+import com.googlecode.mgwt.examples.showcase.client.views.ShowCaseListViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.views.UIView;
+import com.googlecode.mgwt.examples.showcase.client.views.UIViewImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDoneView;
@@ -55,12 +54,12 @@ import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchB
 import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderView;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderViewGwtImpl;
-import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsView;
-import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.views.StationDetailsView;
+import com.googlecode.mgwt.examples.showcase.client.views.StationDetailsViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarView;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarViewGwtImpl;
-import com.googlecode.mgwt.examples.showcase.client.activities.test.TestView;
-import com.googlecode.mgwt.examples.showcase.client.activities.test.TestViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.views.StationSummaryView;
+import com.googlecode.mgwt.examples.showcase.client.views.StationSummaryViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.common.StationUtil;
 
 /**
@@ -75,7 +74,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private UIView uiView;
 	private AboutView aboutView;
 	private AnimationView animationView;
-    private TestView testView;
+    private StationSummaryView testView;
 	private AnimationDoneView animationDoneView;
 	private ScrollWidgetView scrollWidgetView;
 	private ElementsView elementsView;
@@ -203,9 +202,9 @@ public class ClientFactoryImpl implements ClientFactory {
 	}
 
     @Override
-    public TestView getTestView() {
+    public StationSummaryView getTestView() {
         if(testView == null){
-            testView = new TestViewGwtImpl();
+            testView = new StationSummaryViewGwtImpl();
         }
         return testView;
     }

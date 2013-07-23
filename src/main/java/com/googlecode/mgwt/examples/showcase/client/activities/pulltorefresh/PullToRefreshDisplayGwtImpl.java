@@ -2,9 +2,9 @@ package com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh;
 
 import java.util.List;
 
-import com.googlecode.mgwt.examples.showcase.client.BasicCell;
+import com.googlecode.mgwt.examples.showcase.client.model.BasicCell;
 import com.googlecode.mgwt.examples.showcase.client.ChromeWorkaround;
-import com.googlecode.mgwt.examples.showcase.client.DetailViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.views.DetailViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
 import com.googlecode.mgwt.ui.client.widget.CellList;
 import com.googlecode.mgwt.ui.client.widget.base.HasRefresh;

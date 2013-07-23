@@ -1,4 +1,4 @@
-package com.googlecode.mgwt.examples.showcase.client.activities.test;
+package com.googlecode.mgwt.examples.showcase.client.views;
 
 
 import com.google.gwt.user.client.ui.IsWidget;
@@ -8,7 +8,7 @@ import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
 import java.util.List;
 
-public interface TestView extends IsWidget {
+public interface StationSummaryView extends IsWidget {
 
     public HasTapHandlers getBackButton();
 

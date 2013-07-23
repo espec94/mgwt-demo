@@ -1,10 +1,9 @@
-package com.googlecode.mgwt.examples.showcase.client.activities.test;
+package com.googlecode.mgwt.examples.showcase.client.views;
 
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
-import com.googlecode.mgwt.examples.showcase.client.BasicCell;
+import com.googlecode.mgwt.examples.showcase.client.model.BasicCell;
 import com.googlecode.mgwt.examples.showcase.client.model.Station;
-import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.HeaderButton;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -14,14 +13,14 @@ import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
 import java.util.List;
 
-public class TestViewGwtImpl implements TestView {
+public class StationSummaryViewGwtImpl implements StationSummaryView {
 
     private LayoutPanel main;
     private HeaderButton headerBackButton;
     private HeaderPanel headerPanel;
     private CellListWithHeader<Station> cellList;
 
-    public TestViewGwtImpl() {
+    public StationSummaryViewGwtImpl() {
         main = new LayoutPanel();
         headerPanel = new HeaderPanel();
         headerBackButton = new HeaderButton();

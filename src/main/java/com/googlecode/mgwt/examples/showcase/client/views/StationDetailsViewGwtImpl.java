@@ -1,9 +1,7 @@
-package com.googlecode.mgwt.examples.showcase.client.activities.stationdetails;
+package com.googlecode.mgwt.examples.showcase.client.views;
 
 import com.google.gwt.user.client.ui.Label;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
-import com.googlecode.mgwt.examples.showcase.client.DetailViewGwtImpl;
-import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.tabbar.BookmarkTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.HistoryTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.SearchTabBarButton;

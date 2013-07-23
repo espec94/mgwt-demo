@@ -1,4 +1,4 @@
-package com.googlecode.mgwt.examples.showcase.client;
+package com.googlecode.mgwt.examples.showcase.client.views;
 
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HasText;

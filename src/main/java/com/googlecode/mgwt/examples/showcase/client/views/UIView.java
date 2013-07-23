@@ -13,47 +13,30 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.googlecode.mgwt.examples.showcase.client.activities.gcell;
+package com.googlecode.mgwt.examples.showcase.client.views;
 
 import java.util.List;
 
-import com.googlecode.mgwt.examples.showcase.client.views.DetailView;
-import com.googlecode.mgwt.ui.client.widget.GroupingCellList.CellGroup;
+import com.google.gwt.user.client.ui.IsWidget;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.examples.showcase.client.model.Item;
+import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
+
 
 /**
  * @author Daniel Kurka
  *
  */
-public interface GroupedCellListView extends DetailView {
+public interface UIView extends IsWidget {
+	public void setBackButtonText(String text);
 
-	public void render(List<CellGroup<Header, Content>> models);
+	public HasTapHandlers getBackButton();
 
-	public class Header {
-		private final String name;
+	public void setTitle(String title);
 
-		public Header(String name) {
-			this.name = name;
+	public HasCellSelectedHandler getList();
 
-		}
+	public void renderItems(List<Item> items);
 
-		public String getName() {
-			return name;
-		}
-
-	}
-
-	public class Content {
-
-		private final String name;
-
-		public Content(String name) {
-			this.name = name;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-	}
-
+	public void setSelectedIndex(int index, boolean selected);
 }

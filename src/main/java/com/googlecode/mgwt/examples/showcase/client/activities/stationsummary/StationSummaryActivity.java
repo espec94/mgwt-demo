@@ -1,4 +1,4 @@
-package com.googlecode.mgwt.examples.showcase.client.activities.test;
+package com.googlecode.mgwt.examples.showcase.client.activities.stationsummary;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -7,19 +7,19 @@ import com.google.gwt.xml.client.XMLParser;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
-import com.googlecode.mgwt.examples.showcase.client.DetailActivity;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationSelectedEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
+import com.googlecode.mgwt.examples.showcase.client.event.StationSelectedEvent;
+import com.googlecode.mgwt.examples.showcase.client.views.StationSummaryView;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
-public class TestActivity extends MGWTAbstractActivity {
+public class StationSummaryActivity extends MGWTAbstractActivity {
 
     private final ClientFactory clientFactory;
 
-    public TestActivity(ClientFactory clientFactory) {
+    public StationSummaryActivity(ClientFactory clientFactory) {
         this.clientFactory = clientFactory;
 
     }
@@ -27,7 +27,7 @@ public class TestActivity extends MGWTAbstractActivity {
     @Override
     public void start(AcceptsOneWidget panel, final EventBus eventBus) {
         super.start(panel, eventBus);
-        TestView view = clientFactory.getTestView();
+        StationSummaryView view = clientFactory.getTestView();
 
         view.setTitle("Test");
         view.renderItems(clientFactory.getStationUtil().getAllStation());

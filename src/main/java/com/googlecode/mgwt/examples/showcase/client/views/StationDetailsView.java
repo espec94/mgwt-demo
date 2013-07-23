@@ -1,4 +1,4 @@
-package com.googlecode.mgwt.examples.showcase.client.activities.stationdetails;
+package com.googlecode.mgwt.examples.showcase.client.views;
 
 import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;

@@ -24,8 +24,11 @@ import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
 import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.home.Topic;
-import com.googlecode.mgwt.examples.showcase.client.activities.test.TestPlace;
+import com.googlecode.mgwt.examples.showcase.client.places.StationSummaryPlace;
 import com.googlecode.mgwt.examples.showcase.client.common.ApplicationConstants;
+import com.googlecode.mgwt.examples.showcase.client.places.AboutPlace;
+import com.googlecode.mgwt.examples.showcase.client.places.UIPlace;
+import com.googlecode.mgwt.examples.showcase.client.views.ShowCaseListView;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
@@ -69,7 +72,7 @@ public class ShowCaseListActivity extends MGWTAbstractActivity {
                             return;
                         }
                         if (index ==2) {
-                            clientFactory.getPlaceController().goTo(new TestPlace());
+                            clientFactory.getPlaceController().goTo(new StationSummaryPlace());
                         }
 
                     }
