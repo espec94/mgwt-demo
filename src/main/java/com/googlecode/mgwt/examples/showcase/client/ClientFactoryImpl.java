@@ -18,6 +18,7 @@ package com.googlecode.mgwt.examples.showcase.client;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
+import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutView;
 import com.googlecode.mgwt.examples.showcase.client.activities.AboutViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.ShowCaseListView;
@@ -54,6 +55,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchB
 import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderView;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderViewGwtImpl;
+import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsView;
+import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarView;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarViewGwtImpl;
 import com.googlecode.mgwt.examples.showcase.client.activities.test.TestView;
@@ -90,6 +93,7 @@ public class ClientFactoryImpl implements ClientFactory {
 	private CarouselView carouselView;
 	private GroupedCellListGwtImpl groupedCellListView;
     private StationUtil stationUtil;
+    private StationDetailsView stationDetailsView;
 
 	public ClientFactoryImpl() {
 		eventBus = new SimpleEventBus();
@@ -278,4 +282,12 @@ public class ClientFactoryImpl implements ClientFactory {
         return stationUtil;
     }
 
+    @Override
+    public StationDetailsView getStationDetailsView(){
+
+        if(stationDetailsView ==null){
+            stationDetailsView = new StationDetailsViewGwtImpl();
+        }
+        return stationDetailsView;
+    }
 }

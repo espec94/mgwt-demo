@@ -10,6 +10,7 @@ import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellListWithHeader;
+import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
 import java.util.List;
 
@@ -68,6 +69,11 @@ public class TestViewGwtImpl implements TestView {
     @Override
     public void renderItems(List<Station> stations) {
         cellList.getCellList().render(stations);
+    }
+
+    @Override
+    public HasCellSelectedHandler getCellSelectedHandler() {
+        return cellList.getCellList();
     }
 
     @Override

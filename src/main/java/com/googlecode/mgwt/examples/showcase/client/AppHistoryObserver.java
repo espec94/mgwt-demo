@@ -33,7 +33,9 @@ import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.Pul
 import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.test.StationSelectedEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace;
@@ -215,12 +217,22 @@ public class AppHistoryObserver implements HistoryObserver {
 			}
 		});
 
+        HandlerRegistration stationDetailsHandlerRegister = StationSelectedEvent.register(eventBus, new StationSelectedEvent.Handler() {
+
+            @Override
+            public void onStationSelected(StationSelectedEvent event) {
+                Place place = new StationDetailsPlace();
+                historyHandler.goTo(place);
+            }
+        });
+
 		HandlerRegistrationCollection col = new HandlerRegistrationCollection();
 		col.addHandlerRegistration(register);
 		col.addHandlerRegistration(register2);
 		col.addHandlerRegistration(register3);
 		col.addHandlerRegistration(addHandler);
-		return col;
+        col.addHandlerRegistration(stationDetailsHandlerRegister);
+        return col;
 	}
 
 	private void onPhoneNav(Place place, HistoryHandler historyHandler) {

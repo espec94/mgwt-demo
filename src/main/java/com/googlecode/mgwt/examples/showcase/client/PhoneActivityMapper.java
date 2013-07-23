@@ -59,6 +59,8 @@ import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchB
 import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
+import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsActivity;
+import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarActivity;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.test.TestActivity;
@@ -158,6 +160,10 @@ public class PhoneActivityMapper implements ActivityMapper {
 				|| place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace || place instanceof AnimationSwapPlace || place instanceof AnimationSwapPlace) {
 			return new AnimationDoneActivity(clientFactory);
 		}
+
+        if (place instanceof StationDetailsPlace){
+            return new StationDetailsActivity(clientFactory);
+        }
 		return new ShowCaseListActivity(clientFactory);
 	}
 }

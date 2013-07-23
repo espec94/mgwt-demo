@@ -35,6 +35,7 @@ import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.Pul
 import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetView;
 import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxView;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderView;
+import com.googlecode.mgwt.examples.showcase.client.activities.stationdetails.StationDetailsView;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarView;
 import com.googlecode.mgwt.examples.showcase.client.activities.test.TestView;
 import com.googlecode.mgwt.examples.showcase.client.common.StationUtil;
@@ -94,4 +95,6 @@ public interface ClientFactory {
     public GroupedCellListView getGroupedCellListView();
 
     public StationUtil getStationUtil();
+
+    public StationDetailsView getStationDetailsView();
 }

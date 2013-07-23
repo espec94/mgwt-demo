@@ -13,10 +13,9 @@
  */
 package com.googlecode.mgwt.examples.showcase.client.activities.animation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.xml.client.Document;
+import com.google.gwt.xml.client.XMLParser;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
@@ -28,73 +27,75 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Daniel Kurka
- * 
  */
 public class AnimationActivity extends MGWTAbstractActivity {
 
-  private final ClientFactory clientFactory;
-  private List<Animation> animations;
+    private final ClientFactory clientFactory;
+    private List<Animation> animations;
 
-  /**
-	 * 
-	 */
-  public AnimationActivity(ClientFactory clientFactory) {
-    this.clientFactory = clientFactory;
+    /**
+     *
+     */
+    public AnimationActivity(ClientFactory clientFactory) {
+        this.clientFactory = clientFactory;
 
-  }
+    }
 
-  @Override
-  public void start(AcceptsOneWidget panel, final EventBus eventBus) {
-    AnimationView view = clientFactory.getAnimationView();
+    @Override
+    public void start(AcceptsOneWidget panel, final EventBus eventBus) {
+        AnimationView view = clientFactory.getAnimationView();
 
-    view.setLeftButtonText("Home");
-    view.setTitle("Animation");
-    animations = createAnimations();
-    view.setAnimations(animations);
+        view.setLeftButtonText("Home");
+        view.setTitle("Animation");
+        animations = createAnimations();
+        view.setAnimations(animations);
 
-    addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
+        addHandlerRegistration(view.getBackButton().addTapHandler(new TapHandler() {
 
-      @Override
-      public void onTap(TapEvent event) {
-        ActionEvent.fire(eventBus, ActionNames.BACK);
+            @Override
+            public void onTap(TapEvent event) {
+                ActionEvent.fire(eventBus, ActionNames.BACK);
 
-      }
-    }));
-
-    addHandlerRegistration(view.getCellSelectedHandler().addCellSelectedHandler(
-        new CellSelectedHandler() {
-
-          @Override
-          public void onCellSelected(CellSelectedEvent event) {
-            int index = event.getIndex();
-
-            AnimationSelectedEvent.fire(eventBus, animations.get(index));
-
-          }
+            }
         }));
 
-    panel.setWidget(view);
+        addHandlerRegistration(view.getCellSelectedHandler().addCellSelectedHandler(
+                new CellSelectedHandler() {
 
-  }
+                    @Override
+                    public void onCellSelected(CellSelectedEvent event) {
+                        int index = event.getIndex();
+//                        Document messageDom = XMLParser.parse(event.getTargetElement().toString());
+//                        System.out.println(messageDom.getElementsByTagName("div").item(index).getFirstChild().getNodeValue());
+                        AnimationSelectedEvent.fire(eventBus, animations.get(index));
+                    }
+                }));
 
-  /**
-   * @return
-   */
-  private List<Animation> createAnimations() {
-    ArrayList<Animation> list = new ArrayList<Animation>();
+        panel.setWidget(view);
 
-    list.add(new Animation(AnimationNames.SLIDE, "Slide"));
-    list.add(new Animation(AnimationNames.SLIDE_UP, "Slide up"));
-    list.add(new Animation(AnimationNames.DISSOLVE, "Dissolve"));
-    list.add(new Animation(AnimationNames.FADE, "Fade"));
-    list.add(new Animation(AnimationNames.FLIP, "Flip"));
-    list.add(new Animation(AnimationNames.POP, "Pop"));
-    list.add(new Animation(AnimationNames.SWAP, "Swap"));
-    // list.add(new Animation("Cube"));
+    }
 
-    return list;
-  }
+    /**
+     * @return
+     */
+    private List<Animation> createAnimations() {
+        ArrayList<Animation> list = new ArrayList<Animation>();
+
+        list.add(new Animation(AnimationNames.SLIDE, "Slide"));
+        list.add(new Animation(AnimationNames.SLIDE_UP, "Slide up"));
+        list.add(new Animation(AnimationNames.DISSOLVE, "Dissolve"));
+        list.add(new Animation(AnimationNames.FADE, "Fade"));
+        list.add(new Animation(AnimationNames.FLIP, "Flip"));
+        list.add(new Animation(AnimationNames.POP, "Pop"));
+        list.add(new Animation(AnimationNames.SWAP, "Swap"));
+        // list.add(new Animation("Cube"));
+
+        return list;
+    }
 
 }
