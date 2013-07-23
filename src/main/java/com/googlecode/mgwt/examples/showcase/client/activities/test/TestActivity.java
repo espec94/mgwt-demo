@@ -48,7 +48,7 @@ public class TestActivity extends MGWTAbstractActivity {
                     public void onCellSelected(CellSelectedEvent event) {
                         int index = event.getIndex();
                         Document messageDom = XMLParser.parse(event.getTargetElement().toString());
-                        String stationName = messageDom.getElementsByTagName("div").item(index).getFirstChild().getNodeValue();
+                        String stationName = messageDom.getElementsByTagName("div").item(0).getFirstChild().getNodeValue();
                         StationSelectedEvent.fire(eventBus, stationName);
                     }
                 }));
