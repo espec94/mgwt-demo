@@ -1,6 +1,5 @@
 package com.googlecode.mgwt.examples.showcase.client;
 
-import com.google.gwt.http.client.*;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.History;
 import com.google.web.bindery.event.shared.EventBus;
@@ -25,7 +24,6 @@ import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.Scro
 import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace;
 import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace;
-import com.googlecode.mgwt.examples.showcase.client.common.ApplicationConstants;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 import com.googlecode.mgwt.examples.showcase.client.event.StationSelectedEvent;
@@ -255,41 +253,6 @@ public class AppHistoryObserver implements HistoryObserver {
                 historyHandler.pushPlace(new UIPlace());
             }
 
-        }
-    }
-
-    private void onTabletNav(Place place, HistoryHandler historyHandler) {
-        if (place instanceof AnimationDissolvePlace || place instanceof AnimationFadePlace || place instanceof AnimationFlipPlace || place instanceof AnimationPopPlace
-                || place instanceof AnimationSlidePlace || place instanceof AnimationSlideUpPlace || place instanceof AnimationSwapPlace) {
-
-            historyHandler.replaceCurrentPlace(new HomePlace());
-
-        } else {
-            if (place instanceof AboutPlace) {
-                historyHandler.replaceCurrentPlace(new HomePlace());
-            } else {
-                if (place instanceof AnimationPlace) {
-                    historyHandler.replaceCurrentPlace(new HomePlace());
-                } else {
-                    if (place instanceof UIPlace) {
-                        historyHandler.replaceCurrentPlace(new HomePlace());
-                    } else {
-                        if (place instanceof UIPlace) {
-                            historyHandler.replaceCurrentPlace(new HomePlace());
-                        } else {
-
-                            if (place instanceof ButtonBarPlace || place instanceof GroupedCellListPlace || place instanceof CarouselPlace || place instanceof ButtonPlace
-                                    || place instanceof ElementsPlace || place instanceof FormsPlace || place instanceof PopupPlace || place instanceof ProgressBarPlace
-                                    || place instanceof ProgressIndicatorPlace || place instanceof PullToRefreshPlace || place instanceof ScrollWidgetPlace || place instanceof SearchBoxPlace
-                                    || place instanceof SliderPlace || place instanceof TabBarPlace) {
-                                historyHandler.replaceCurrentPlace(new HomePlace());
-
-                            }
-
-                        }
-                    }
-                }
-            }
         }
     }
 

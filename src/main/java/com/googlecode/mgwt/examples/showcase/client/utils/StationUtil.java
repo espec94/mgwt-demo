@@ -21,7 +21,7 @@ public class StationUtil {
     public static void setAllStationXml(String allStationsXml) {
         if (StationUtil.allStationsXml == null) {
             StationUtil.allStationsXml = allStationsXml;
-            XmlParser.parseMessage(allStationsXml, mapOfStations);
+            XmlParser.parseAllStationXml(allStationsXml, mapOfStations);
         }
     }
 

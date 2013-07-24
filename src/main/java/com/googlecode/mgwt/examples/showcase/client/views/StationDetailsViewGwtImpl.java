@@ -5,6 +5,7 @@ import com.google.gwt.maps.client.InfoWindowContent;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.Maps;
 import com.google.gwt.maps.client.control.LargeMapControl;
+import com.google.gwt.maps.client.control.SmallMapControl;
 import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
@@ -12,10 +13,13 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.BookmarkTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.HistoryTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
+
+import java.util.List;
 
 
 public class StationDetailsViewGwtImpl implements StationDetailsView {
@@ -24,6 +28,7 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
     private TabPanel tabPanel;
     private HTML trainListLabel;
     private SimplePanel simplePanel;
+    private MapWidget map;
 
     public StationDetailsViewGwtImpl() {
         main = new LayoutPanel();
@@ -46,16 +51,15 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
 
             public void run() {
                 // Open a map centered on Satu Mare, Romania
-                LatLng SatuMareCity = LatLng.newInstance(47.792091, 22.885189);
+                LatLng DublinCity = LatLng.newInstance(53.23727683624094, -6.21826171875);
 
-                final MapWidget map = new MapWidget(SatuMareCity, 2);
+                map =  new MapWidget(DublinCity, 7);
                 map.setSize("100%", "100%");
                 // Add some controls for the zoom level
                 map.addControl(new LargeMapControl());
 
                 // Add a marker
-                map.addOverlay(new Marker(SatuMareCity));
-
+                map.addOverlay(new Marker(DublinCity));
                 // Add an info window to highlight a point of interest
                 map.getInfoWindow().open(map.getCenter(),
                         new InfoWindowContent("The River Somes is here in Satu Mare"));
@@ -91,4 +95,17 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
         trainListLabel.setText(trainList);
     }
 
+    @Override
+    public void setOverraysOnMap(final List<TrainPosition> trainPositionList){
+//        Maps.loadMapsApi("", "2", false, new Runnable() {
+//            public void run() {
+//                System.out.println("trainPositions: " + trainPositionList.toString());
+//                map.clearOverlays();
+//                for (TrainPosition current : trainPositionList) {
+//                    map.addOverlay(new Marker(LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude())));
+//                    map.addOverlay(new Marker(DublinCity2));
+//                }
+            }
+//        });
+//    }
 }
