@@ -3,7 +3,6 @@ package com.googlecode.mgwt.examples.showcase.client.activities;
 import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.http.client.*;
-import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
@@ -52,7 +51,7 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
                         String responseText = response.getText();
                         // System.out.println("all train information: " + responseText);
                         XmlParser.parseStationDataXml(responseText, listStationData);
-                        clientFactory.getStationDetailsView().setTrainList(listStationData.toString());
+                        clientFactory.getStationDetailsView().setTrainList(listStationData);
                     } else {
                         // Handle the error.  Can get the status text from response.getStatusText()
                         System.out.println("HTTP error code:" + response.getStatusCode() + "," + response.getStatusText());

@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.examples.showcase.client.model.StationData;
 import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -30,6 +31,8 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
     private HTML trainListLabel;
     private SimplePanel simplePanel;
     private MapWidget map;
+    private DockLayoutPanel dock;
+
 
     public StationDetailsViewGwtImpl() {
         main = new LayoutPanel();
@@ -38,6 +41,8 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
         trainListLabel = new HTML("Initial page");
         simplePanel = new SimplePanel();
         tabPanel.add(new BookmarkTabBarButton(), trainListLabel);
+        dock = new DockLayoutPanel(Style.Unit.PX);
+
         // tabPanel.add(new ContactsTabBarButton(), new Label("Contacts"));
         // tabPanel.add(new DownloadsTabBarButton(), new Label("Downloads"));
         // tabPanel.add(new FavoritesTabBarButton(), new Label("Favorites"));
@@ -66,7 +71,6 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
                 map.getInfoWindow().open(map.getCenter(),
                         new InfoWindowContent("The River Somes is here in Satu Mare"));
 
-                final DockLayoutPanel dock = new DockLayoutPanel(Style.Unit.PX);
                 dock.addNorth(map, 500);
 
                 // Add the map to the HTML host page
@@ -94,8 +98,15 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
     }
 
     @Override
-    public void setTrainList(String trainList) {
-        trainListLabel.setText(trainList);
+    public void setTrainList(List<StationData> trainList) {
+        StringBuffer buffer = new StringBuffer();
+        for (StationData current : trainList) {
+            buffer.append("Destination: " + current.getDestination());
+            buffer.append("Due: " + current.getDueIn());
+            buffer.append("Current Time: " + current.getQueryTime());
+            buffer.append("Lasy Location: " + current.getLastLocation());
+        }
+        trainListLabel.setText(buffer.toString());
     }
 
     @Override
@@ -105,15 +116,17 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
 
     @Override
     public void setOverraysOnMap(final List<TrainPosition> trainPositionList) {
-//        Maps.loadMapsApi("", "2", false, new Runnable() {
-//            public void run() {
-//                System.out.println("trainPositions: " + trainPositionList.toString());
-//                map.clearOverlays();
-//                for (TrainPosition current : trainPositionList) {
-//                    map.addOverlay(new Marker(LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude())));
+        Maps.loadMapsApi("", "2", false, new Runnable() {
+            public void run() {
+                dock.remove(map);
+                System.out.println("trainPositions: " + trainPositionList.toString());
+                map.clearOverlays();
+                for (TrainPosition current : trainPositionList) {
+                    map.addOverlay(new Marker(LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude())));
 //                    map.addOverlay(new Marker(DublinCity2));
-//                }
+                }
+                dock.add(map);
+            }
+        });
     }
-//        });
-//    }
 }
