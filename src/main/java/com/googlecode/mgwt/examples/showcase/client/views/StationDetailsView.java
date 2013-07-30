@@ -13,6 +13,8 @@ public interface StationDetailsView extends IsWidget {
 
     public HasTapHandlers getBackButton();
 
+    public void setTitle(String title);
+
     public TabPanel getTabpanel();
 
     public void setTrainList(String trainList);

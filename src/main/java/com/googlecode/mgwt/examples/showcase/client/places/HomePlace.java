@@ -18,10 +18,7 @@ package com.googlecode.mgwt.examples.showcase.client.places;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-/**
- * @author Daniel Kurka
- *
- */
+
 public class HomePlace extends Place {
 
 	public static class HomePlaceTokenizer implements PlaceTokenizer<HomePlace> {

@@ -5,7 +5,6 @@ import com.google.gwt.maps.client.InfoWindowContent;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.Maps;
 import com.google.gwt.maps.client.control.LargeMapControl;
-import com.google.gwt.maps.client.control.SmallMapControl;
 import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
@@ -14,6 +13,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
+import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.BookmarkTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.HistoryTabBarButton;
@@ -26,12 +26,14 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
 
     private LayoutPanel main;
     private TabPanel tabPanel;
+    private HeaderPanel headerPanel;
     private HTML trainListLabel;
     private SimplePanel simplePanel;
     private MapWidget map;
 
     public StationDetailsViewGwtImpl() {
         main = new LayoutPanel();
+        headerPanel = new HeaderPanel();
         tabPanel = new TabPanel();
         trainListLabel = new HTML("Initial page");
         simplePanel = new SimplePanel();
@@ -53,7 +55,7 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
                 // Open a map centered on Satu Mare, Romania
                 LatLng DublinCity = LatLng.newInstance(53.23727683624094, -6.21826171875);
 
-                map =  new MapWidget(DublinCity, 7);
+                map = new MapWidget(DublinCity, 7);
                 map.setSize("100%", "100%");
                 // Add some controls for the zoom level
                 map.addControl(new LargeMapControl());
@@ -72,6 +74,7 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
             }
         });
 
+        main.add(headerPanel);
         main.add(tabPanel);
     }
 
@@ -96,7 +99,12 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
     }
 
     @Override
-    public void setOverraysOnMap(final List<TrainPosition> trainPositionList){
+    public void setTitle(String title) {
+        headerPanel.setTitle(title);
+    }
+
+    @Override
+    public void setOverraysOnMap(final List<TrainPosition> trainPositionList) {
 //        Maps.loadMapsApi("", "2", false, new Runnable() {
 //            public void run() {
 //                System.out.println("trainPositions: " + trainPositionList.toString());
@@ -105,7 +113,7 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
 //                    map.addOverlay(new Marker(LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude())));
 //                    map.addOverlay(new Marker(DublinCity2));
 //                }
-            }
+    }
 //        });
 //    }
 }

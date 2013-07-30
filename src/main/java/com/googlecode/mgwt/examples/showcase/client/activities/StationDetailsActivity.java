@@ -34,6 +34,7 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
 
         //init train information in tabpanel
         String stationDesc = clientFactory.getStationUtil().getCurrentStation();
+        view.setTitle(stationDesc);
         String requestURL = ApplicationConstants.BASE_URL + "/" + ApplicationConstants.GET_STATION_DATA_BY_NAME + "?" + ApplicationConstants.STATION_DESC + "=" + stationDesc;
 
         System.out.println("Sending HTTP request:" + requestURL + " to get train details from current station.");
