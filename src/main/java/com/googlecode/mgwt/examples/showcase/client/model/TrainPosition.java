@@ -29,4 +29,32 @@ public class TrainPosition {
     public double getTrainLongitude() {
         return trainLongitude;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TrainPosition that = (TrainPosition) o;
+
+        if (Double.compare(that.trainLatitude, trainLatitude) != 0) return false;
+        if (Double.compare(that.trainLongitude, trainLongitude) != 0) return false;
+        if (!trainCode.equals(that.trainCode)) return false;
+        if (!trainStatus.equals(that.trainStatus)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = trainStatus.hashCode();
+        temp = Double.doubleToLongBits(trainLatitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + trainCode.hashCode();
+        temp = Double.doubleToLongBits(trainLongitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }

@@ -14,13 +14,15 @@ import com.googlecode.mgwt.examples.showcase.client.views.StationDetailsView;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class StationDetailsActivity extends MGWTAbstractActivity {
 
     private final ClientFactory clientFactory;
     private List<StationData> listStationData = new ArrayList<StationData>();
-    private List<TrainPosition> listTrainPosition = new ArrayList<TrainPosition>();
+    private Map<String, TrainPosition> listTrainPosition = new HashMap<String, TrainPosition>();
 
     public StationDetailsActivity(ClientFactory clientFactory) {
         this.clientFactory = clientFactory;
@@ -80,10 +82,9 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
                         // System.out.println("all train information: " + responseText);
 
                         XmlParser.parseTrainPositionsXml(responseText, listTrainPosition);
-
+                        List<TrainPosition> trainsRelatedToCurrentStation = getRunningTrainsFromCurrentStation(listStationData, listTrainPosition);
                         //create a list of LatLng to mark it onto the map
-                        //TODO display trains only belong to current station's trains by looking up train code
-                        clientFactory.getStationDetailsView().setOverraysOnMap(listTrainPosition);
+                        clientFactory.getStationDetailsView().setOverraysOnMap(trainsRelatedToCurrentStation);
                     } else {
                         // Handle the error.  Can get the status text from response.getStatusText()
                         System.out.println("HTTP error code:" + response.getStatusCode() + "," + response.getStatusText());
@@ -105,6 +106,18 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
 
         panel.setWidget(view);
 
+    }
+
+    private List<TrainPosition> getRunningTrainsFromCurrentStation(List<StationData> listStationData, Map<String, TrainPosition> listTrainPosition) {
+        List<TrainPosition> result = new ArrayList<TrainPosition>();
+
+        for (StationData current : listStationData) {
+            TrainPosition trainPosition = listTrainPosition.get(current.getTrainCode());
+            if (trainPosition != null) {
+                result.add(trainPosition);
+            }
+        }
+        return result;
     }
 
 }

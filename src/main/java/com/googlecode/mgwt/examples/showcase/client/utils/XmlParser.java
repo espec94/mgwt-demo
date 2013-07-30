@@ -72,11 +72,11 @@ public class XmlParser {
             return "";
         };
 
-        return  messageDom.getElementsByTagName(tagName).item(i).getFirstChild().getNodeValue();
+        return messageDom.getElementsByTagName(tagName).item(i).getFirstChild().getNodeValue().trim();
 
     }
 
-    public static void parseTrainPositionsXml(String responseText, List<TrainPosition> listTrainPosition) {
+    public static void parseTrainPositionsXml(String responseText, Map<String, TrainPosition> listTrainPosition) {
         try {
             // parse the XML document into a DOM
             Document messageDom = XMLParser.parse(responseText);
@@ -91,7 +91,7 @@ public class XmlParser {
                 double trainLongitude = Double.parseDouble(getElementAsString(messageDom,"TrainLongitude", i));
                 String trainCode = getElementAsString(messageDom,"TrainCode", i);
 
-                listTrainPosition.add(new TrainPosition(trainStatus, trainLatitude, trainLongitude, trainCode));
+                listTrainPosition.put(trainCode, new TrainPosition(trainStatus, trainLatitude, trainLongitude, trainCode));
             }
 
         } catch (DOMException e) {
