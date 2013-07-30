@@ -19,10 +19,6 @@ import com.googlecode.mgwt.ui.client.MGWT;
 import com.googlecode.mgwt.ui.client.widget.Button;
 import com.googlecode.mgwt.ui.client.widget.RoundPanel;
 
-/**
- * @author Daniel Kurka
- *
- */
 public class AboutViewGwtImpl extends DetailViewGwtImpl implements AboutView {
 
   private RoundPanel round;
@@ -32,13 +28,9 @@ public class AboutViewGwtImpl extends DetailViewGwtImpl implements AboutView {
 
     round = new RoundPanel();
 
-    round.add(new HTML("mgwt"));
-    round.add(new HTML("Version 1.2.0-SNAPSHOT"));
-    round.add(new HTML("Built by Daniel Kurka, <a target='_blank' href='http://www.twitter.com/dankurka'>@dankurka</a> on Twitter"));
-
-    round.add(new HTML("Using GWT to build mobile apps"));
-
-    round.add(new HTML("<br/><br/><a target='_blank' href='http://www.m-gwt.com'>www.m-gwt.com</a><br/><br/>"));
+    round.add(new HTML("Irish Rail Information"));
+    round.add(new HTML("Version 1.0.0-SNAPSHOT"));
+    round.add(new HTML("Built by Seung Kyun Hong"));
 
     if (MGWT.getOsDetection().isPhone()) {
       button = new Button("back");

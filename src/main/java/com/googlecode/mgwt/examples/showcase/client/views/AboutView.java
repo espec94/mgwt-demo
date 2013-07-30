@@ -15,12 +15,6 @@
  */
 package com.googlecode.mgwt.examples.showcase.client.views;
 
-import com.googlecode.mgwt.examples.showcase.client.views.DetailView;
-
-/**
- * @author Daniel Kurka
- *
- */
 public interface AboutView extends DetailView {
 
 }
