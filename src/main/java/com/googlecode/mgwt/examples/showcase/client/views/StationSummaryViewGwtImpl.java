@@ -24,6 +24,7 @@ public class StationSummaryViewGwtImpl implements StationSummaryView {
         main = new LayoutPanel();
         headerPanel = new HeaderPanel();
         headerBackButton = new HeaderButton();
+        headerBackButton.setText("Home");
 
 
         headerPanel.setLeftWidget(headerBackButton);

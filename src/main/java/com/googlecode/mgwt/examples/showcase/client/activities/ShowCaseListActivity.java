@@ -32,7 +32,7 @@ public class ShowCaseListActivity extends MGWTAbstractActivity {
     public void start(AcceptsOneWidget panel, EventBus eventBus) {
         ShowCaseListView view = clientFactory.getHomeView();
 
-        view.setTitle("Irish Rail Information");
+        view.setTitle("Irish Rail Info");
         view.setRightButtonText("about");
 
         view.getFirstHeader().setText("Menu");

@@ -27,10 +27,9 @@ import java.util.List;
 public class StationDetailsViewGwtImpl implements StationDetailsView {
 
     private LayoutPanel main;
-    private TabPanel tabPanel;
     private HeaderPanel headerPanel;
+    private TabPanel tabPanel;
     private HTML trainListLabel;
-    private SimplePanel simplePanel;
     private MapWidget map;
     private DockLayoutPanel dock;
     private ScrollPanel scrollPanel;
@@ -41,12 +40,11 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
         headerPanel = new HeaderPanel();
         tabPanel = new TabPanel();
         trainListLabel = new HTML("Initial page");
-        simplePanel = new SimplePanel();
         dock = new DockLayoutPanel(Style.Unit.PX);
         scrollPanel = new ScrollPanel();
         scrollPanel.setShowScrollBarY(true);
         scrollPanel.add(trainListLabel);
-        tabPanel.add(new BookmarkTabBarButton(),scrollPanel);
+        tabPanel.add(new BookmarkTabBarButton(), scrollPanel);
 
         // tabPanel.add(new ContactsTabBarButton(), new Label("Contacts"));
         // tabPanel.add(new DownloadsTabBarButton(), new Label("Downloads"));
@@ -54,7 +52,7 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
         // tabPanel.add(new FeaturedTabBarButton(), new Label("Featured"));
 
 
-        tabPanel.add(new HistoryTabBarButton(), simplePanel);
+        tabPanel.add(new HistoryTabBarButton(), dock);
         // tabPanel.add(new MoreTabBarButton(), new Label("More"));
         // tabPanel.add(new MostRecentTabBarButton(), new Label("Most Recent"));
         // tabPanel.add(new MostViewedTabBarButton(), new Label("Most Viewed"));
@@ -113,7 +111,7 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
 
                 // Add a marker
                 for (TrainPosition current : trainPositionList) {
-                    Marker currentMarker = new Marker(LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude())) ;
+                    Marker currentMarker = new Marker(LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude()));
                     map.addOverlay(currentMarker);
                 }
 
@@ -124,7 +122,7 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
                 dock.addNorth(map, 500);
 
                 // Add the map to the HTML host page
-                simplePanel.add(dock);
+//                simplePanel.add(map);
             }
         });
     }
