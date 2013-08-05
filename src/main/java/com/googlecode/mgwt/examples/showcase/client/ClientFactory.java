@@ -17,32 +17,10 @@ package com.googlecode.mgwt.examples.showcase.client;
 
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
-import com.googlecode.mgwt.examples.showcase.client.views.AboutView;
-import com.googlecode.mgwt.examples.showcase.client.views.ShowCaseListView;
-import com.googlecode.mgwt.examples.showcase.client.views.UIView;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationView;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDoneView;
-import com.googlecode.mgwt.examples.showcase.client.activities.button.ButtonView;
-import com.googlecode.mgwt.examples.showcase.client.activities.buttonbar.ButtonBarView;
-import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselView;
-import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsView;
-import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsView;
-import com.googlecode.mgwt.examples.showcase.client.activities.gcell.GroupedCellListView;
-import com.googlecode.mgwt.examples.showcase.client.activities.popup.PopupView;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressbar.ProgressBarView;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressindicator.ProgressIndicatorView;
-import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.PullToRefreshDisplay;
-import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetView;
-import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxView;
-import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderView;
-import com.googlecode.mgwt.examples.showcase.client.views.StationDetailsView;
-import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarView;
-import com.googlecode.mgwt.examples.showcase.client.views.StationSummaryView;
 import com.googlecode.mgwt.examples.showcase.client.utils.StationUtil;
+import com.googlecode.mgwt.examples.showcase.client.views.*;
 
-/**
- * @author Daniel Kurka
- */
+
 public interface ClientFactory {
     public ShowCaseListView getHomeView();
 
@@ -57,42 +35,7 @@ public interface ClientFactory {
 
     public AboutView getAboutView();
 
-    public AnimationView getAnimationView();
-
-    public AnimationDoneView getAnimationDoneView();
-
-    public ScrollWidgetView getScrollWidgetView();
-
-    public ElementsView getElementsView();
-
-    public ButtonBarView getButtonBarView();
-
-    public SearchBoxView getSearchBoxView();
-
-    public TabBarView getTabBarView();
-
-    public ButtonView getButtonView();
-
     public StationSummaryView getStationSummaryView();
-
-    /**
-     *
-     */
-    public PopupView getPopupView();
-
-    public ProgressBarView getProgressBarView();
-
-    public SliderView getSliderView();
-
-    public CarouselView getCarouselHorizontalView();
-
-    public PullToRefreshDisplay getPullToRefreshDisplay();
-
-    public ProgressIndicatorView getProgressIndicatorView();
-
-    public FormsView getFormsView();
-
-    public GroupedCellListView getGroupedCellListView();
 
     public StationUtil getStationUtil();
 

@@ -18,41 +18,13 @@ package com.googlecode.mgwt.examples.showcase.client.mappers;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 import com.googlecode.mgwt.examples.showcase.client.places.AboutPlace.AboutPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.places.UIPlace.UIPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animation.AnimationPlace.AnimationPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationCubePlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationDissolvePlace.AnimationDissolvePlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFadePlace.AnimationFadePlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationFlipPlace.AnimationFlipPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationPopPlace.AnimationPopPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlidePlace.AnimationSlidePlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSlideUpPlace.AnimationSlideUpPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.animationdone.AnimationSwapPlace.AnimationSwapPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.button.ButtonPlace.ButtonPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.buttonbar.ButtonBarPlace.ButtonBarPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.carousel.CarouselPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.elements.ElementsPlace.ElementsPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.forms.FormsPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.gcell.GroupedCellListPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.popup.PopupPlace.PopupPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressbar.ProgressBarPlace.ProgressBarPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.progressindicator.ProgressIndicatorPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.pulltorefresh.PullToRefreshPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.scrollwidget.ScrollWidgetPlace.ScrollWidgetPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.searchbox.SearchBoxPlace.SearchBoxPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.activities.slider.SliderPlace.SliderPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.places.StationDetailsPlace;
-import com.googlecode.mgwt.examples.showcase.client.activities.tabbar.TabBarPlace.TabBarPlaceTokenizer;
-import com.googlecode.mgwt.examples.showcase.client.places.StationSummaryPlace.TestPlaceTokenizer;
 import com.googlecode.mgwt.examples.showcase.client.places.HomePlace.HomePlaceTokenizer;
+import com.googlecode.mgwt.examples.showcase.client.places.StationDetailsPlace;
+import com.googlecode.mgwt.examples.showcase.client.places.StationSummaryPlace.TestPlaceTokenizer;
+import com.googlecode.mgwt.examples.showcase.client.places.UIPlace.UIPlaceTokenizer;
 
-/**
- * @author Daniel Kurka
- */
-@WithTokenizers({HomePlaceTokenizer.class, UIPlaceTokenizer.class, ScrollWidgetPlaceTokenizer.class, AboutPlaceTokenizer.class, ButtonPlaceTokenizer.class, AnimationDissolvePlaceTokenizer.class,
-        AnimationFadePlaceTokenizer.class, AnimationFlipPlaceTokenizer.class, TestPlaceTokenizer.class, AnimationPlaceTokenizer.class, AnimationPopPlaceTokenizer.class, AnimationSlidePlaceTokenizer.class,
-        AnimationSlideUpPlaceTokenizer.class, AnimationSwapPlaceTokenizer.class, ButtonBarPlaceTokenizer.class, ElementsPlaceTokenizer.class, FormsPlace.Tokenizer.class, PopupPlaceTokenizer.class,
-        ProgressBarPlaceTokenizer.class, SearchBoxPlaceTokenizer.class, SliderPlaceTokenizer.class, TabBarPlaceTokenizer.class, PullToRefreshPlace.Tokenizer.class, AnimationCubePlace.Tokenizer.class,
-        ProgressIndicatorPlace.Tokenizer.class, CarouselPlace.Tokenizer.class, GroupedCellListPlace.Tokenizer.class, StationDetailsPlace.StationDetailsPlaceTokenizer.class})
+
+@WithTokenizers({HomePlaceTokenizer.class, UIPlaceTokenizer.class, AboutPlaceTokenizer.class,
+        TestPlaceTokenizer.class, StationDetailsPlace.StationDetailsPlaceTokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

@@ -24,10 +24,6 @@ import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 import com.googlecode.mgwt.examples.showcase.client.views.AboutView;
 
-/**
- * @author Daniel Kurka
- *
- */
 public class AboutActivity extends DetailActivity {
 
 	private final ClientFactory clientFactory;

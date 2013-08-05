@@ -121,30 +121,7 @@ public class ShowCaseEntryPoint implements EntryPoint {
 
     private String buildStackTrace(Throwable t, String log) {
         return "disabled";
-        // if (t != null) {
-        // log += t.getClass().toString();
-        // log += t.getMessage();
-        // //
-        // StackTraceElement[] stackTrace = t.getStackTrace();
-        // if (stackTrace != null) {
-        // StringBuffer trace = new StringBuffer();
-        //
-        // for (int i = 0; i < stackTrace.length; i++) {
-        // trace.append(stackTrace[i].getClassName() + "." + stackTrace[i].getMethodName() + "("
-        // + stackTrace[i].getFileName() + ":" + stackTrace[i].getLineNumber());
-        // }
-        //
-        // log += trace.toString();
-        // }
-        // //
-        // Throwable cause = t.getCause();
-        // if (cause != null && cause != t) {
-        //
-        // log += buildStackTrace(cause, "CausedBy:\n");
-        //
-        // }
-        // }
-        // return log;
+
     }
 
 }
