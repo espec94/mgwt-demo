@@ -16,16 +16,17 @@ public class XmlParser {
             Document messageDom = XMLParser.parse(messageXml);
 
             // find each station in an attribute of the <objStation> tag
-            NodeList nodeList = messageDom.getElementsByTagName("objStation");
+            NodeList nodeList = messageDom.getDocumentElement().getElementsByTagName("objStation");
 
             //initialize Station object
             for (int i = 0; i < nodeList.getLength(); i++) {
-                String stationDesc = getElementAsString(messageDom,"StationDesc",i);
-                String stationAlias = getElementAsString(messageDom,"StationAlias", i);
-                String stationLatitude = getElementAsString(messageDom,"StationLatitude",i);
-                String stationLongitude = getElementAsString(messageDom,"StationLongitude",i);
-                String stationCode = getElementAsString(messageDom,"StationCode",i);
-                int stationId = Integer.parseInt(getElementAsString(messageDom,"StationId",i));
+                Element entry = (Element)nodeList.item(i);
+                String stationDesc = getElementAsString(entry,"StationDesc");
+                String stationAlias = getElementAsString(entry,"StationAlias");
+                String stationLatitude = getElementAsString(entry,"StationLatitude");
+                String stationLongitude = getElementAsString(entry,"StationLongitude");
+                String stationCode = getElementAsString(entry,"StationCode");
+                int stationId = Integer.parseInt(getElementAsString(entry,"StationId"));
 
                 Station station = new Station(stationId, stationCode, stationLongitude, stationLatitude, stationDesc, stationAlias);
                 stationList.put(stationDesc, station);
@@ -41,21 +42,22 @@ public class XmlParser {
             Document messageDom = XMLParser.parse(messageXml);
 
             // find each station in an attribute of the <objStation> tag
-            NodeList nodeList = messageDom.getElementsByTagName("objStationData");
+            NodeList nodeList = messageDom.getDocumentElement().getElementsByTagName("objStationData");
 
             //initialize Station object
             for (int i = 0; i < nodeList.getLength(); i++) {
-                String trainCode = getElementAsString(messageDom,"Traincode", i);
-                String stationFullName = getElementAsString(messageDom,"Stationfullname", i);
-                String stationCode = getElementAsString(messageDom,"Stationcode",i);
-                String queryTime = getElementAsString(messageDom,"Querytime",i);
-                String destination = getElementAsString(messageDom,"Destination",i);
-                String direction = getElementAsString(messageDom,"Direction",i);
-                String trainType = getElementAsString(messageDom,"Traintype",i);
-                int dueIn = Integer.parseInt(getElementAsString(messageDom,"Duein",i));
-                String expectedArrival = getElementAsString(messageDom,"Exparrival",i);
-                String scheduledArrival = getElementAsString(messageDom,"Scharrival",i);
-                String lastLocation = getElementAsString(messageDom,"Lastlocation",i);
+                Element entry = (Element)nodeList.item(i);
+                String trainCode = getElementAsString(entry,"Traincode");
+                String stationFullName = getElementAsString(entry,"Stationfullname");
+                String stationCode = getElementAsString(entry,"Stationcode");
+                String queryTime = getElementAsString(entry,"Querytime");
+                String destination = getElementAsString(entry,"Destination");
+                String direction = getElementAsString(entry,"Direction");
+                String trainType = getElementAsString(entry,"Traintype");
+                int dueIn = Integer.parseInt(getElementAsString(entry,"Duein"));
+                String expectedArrival = getElementAsString(entry,"Exparrival");
+                String scheduledArrival = getElementAsString(entry,"Scharrival");
+                String lastLocation = getElementAsString(entry,"Lastlocation");
 
                 stationDataList.add(new StationData(trainCode, stationFullName, stationCode, queryTime, destination, direction, trainType, dueIn, expectedArrival, scheduledArrival, lastLocation));
             }
@@ -65,14 +67,14 @@ public class XmlParser {
 
     }
 
-    private static String getElementAsString(Document messageDom, String tagName, int i) {
+    private static String getElementAsString(Element messageDom, String tagName) {
 
-        Node node = messageDom.getElementsByTagName(tagName).item(i).getFirstChild();
+        Node node = messageDom.getElementsByTagName(tagName).item(0).getFirstChild();
         if( node == null){
             return "";
         };
 
-        return messageDom.getElementsByTagName(tagName).item(i).getFirstChild().getNodeValue().trim();
+        return node.getNodeValue().trim();
 
     }
 
@@ -82,14 +84,15 @@ public class XmlParser {
             Document messageDom = XMLParser.parse(responseText);
 
             // find each station in an attribute of the <objStation> tag
-            NodeList nodeList = messageDom.getElementsByTagName("objTrainPositions");
+            NodeList nodeList = messageDom.getDocumentElement().getElementsByTagName("objTrainPositions");
 
             //initialize Station object
             for (int i = 0; i < nodeList.getLength(); i++) {
-                String trainStatus = getElementAsString(messageDom,"TrainStatus",i);
-                double trainLatitude = Double.parseDouble(getElementAsString(messageDom,"TrainLatitude", i));
-                double trainLongitude = Double.parseDouble(getElementAsString(messageDom,"TrainLongitude", i));
-                String trainCode = getElementAsString(messageDom,"TrainCode", i);
+                Element entry = (Element)nodeList.item(i);
+                String trainStatus = getElementAsString(entry,"TrainStatus");
+                double trainLatitude = Double.parseDouble(getElementAsString(entry,"TrainLatitude"));
+                double trainLongitude = Double.parseDouble(getElementAsString(entry,"TrainLongitude"));
+                String trainCode = getElementAsString(entry,"TrainCode");
 
                 listTrainPosition.put(trainCode, new TrainPosition(trainStatus, trainLatitude, trainLongitude, trainCode));
             }
