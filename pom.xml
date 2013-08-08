@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-
-
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.mgwt</groupId>
 	<artifactId>mgwt-showcase</artifactId>
@@ -14,12 +11,6 @@
 		<gwtversion>2.5.0</gwtversion>
 		<runTarget>index.html</runTarget>
 	</properties>
-
-	<scm>
-		<url>https://code.google.com/p/mgwt.showcase/</url>
-		<connection>scm:git:https://code.google.com/p/mgwt.showcase/</connection>
-		<developerConnection>scm:git:https://code.google.com/p/mgwt.showcase/</developerConnection>
-	</scm>
 
   <repositories>
 	   <repository>
@@ -52,27 +43,6 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.5.0</version>
-				<executions>
-					<execution>
-						<configuration>
-							<module>com.googlecode.mgwt.examples.showcase.ShowCase</module>
-							<runTarget>index.html</runTarget>
-				   			<copyWebapp>true</copyWebapp>
-						</configuration>
-						<goals>
-							<goal>compile</goal>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -182,14 +152,4 @@
             <version>1.1.0</version>
         </dependency>
 	</dependencies>
-
-	<distributionManagement>
-		<repository>
-			<id>m-gwt.com</id>
-			<url>ftp://www56.your-server.de/public_html/m2/repo</url>
-		</repository>
-	</distributionManagement>
-
-
-
 </project>
