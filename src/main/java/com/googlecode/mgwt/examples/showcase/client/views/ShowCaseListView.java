@@ -24,10 +24,6 @@ import com.googlecode.mgwt.examples.showcase.client.model.Topic;
 import com.googlecode.mgwt.ui.client.widget.celllist.HasCellSelectedHandler;
 
 
-/**
- * @author Daniel Kurka
- *
- */
 public interface ShowCaseListView extends IsWidget {
 
 	public void setTitle(String text);

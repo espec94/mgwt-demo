@@ -38,20 +38,6 @@ public class AppHistoryObserver implements HistoryObserver {
     @Override
     public HandlerRegistration bind(EventBus eventBus, final HistoryHandler historyHandler) {
 
-//        HandlerRegistration register3 = UIEntrySelectedEvent.register(eventBus, new UIEntrySelectedEvent.Handler() {
-//            @Override
-//            public void onAnimationSelected(UIEntrySelectedEvent event) {
-//                UIEntry entry = event.getEntry();
-//                Place place = null;
-//
-//                switch (entry) {
-//                    default:
-//                        break;
-//                }
-//                historyHandler.goTo(place);
-//            }
-//        });
-
         HandlerRegistration register2 = ActionEvent.register(eventBus, ActionNames.BACK, new ActionEvent.Handler() {
 
             @Override
@@ -86,12 +72,6 @@ public class AppHistoryObserver implements HistoryObserver {
                 historyHandler.replaceCurrentPlace(new HomePlace());
                 historyHandler.pushPlace(new StationSummaryPlace());
             }
-//            if (place instanceof ButtonBarPlace ) {
-//                historyHandler.replaceCurrentPlace(new HomePlace());
-//
-//                historyHandler.pushPlace(new UIPlace());
-//            }
-
         }
     }
 

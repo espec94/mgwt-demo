@@ -13,23 +13,7 @@
  */
 package com.googlecode.mgwt.examples.showcase.client.activities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.web.bindery.event.shared.EventBus;
-import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
-import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
-import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
-import com.googlecode.mgwt.examples.showcase.client.event.UIEntrySelectedEvent;
-import com.googlecode.mgwt.examples.showcase.client.event.UIEntrySelectedEvent.UIEntry;
-import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
-import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
-import com.googlecode.mgwt.examples.showcase.client.model.Item;
-import com.googlecode.mgwt.examples.showcase.client.views.UIView;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
-import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
-import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
 public class UIActivity extends MGWTAbstractActivity {
 
