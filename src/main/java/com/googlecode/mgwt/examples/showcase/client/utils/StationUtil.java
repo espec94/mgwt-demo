@@ -13,6 +13,8 @@ public class StationUtil {
 
     private static String allStationsXml;
 
+    private static List<Station> listStation = new ArrayList<Station>();
+
     private String currentStation;
 
     public StationUtil() {
@@ -22,17 +24,14 @@ public class StationUtil {
         if (StationUtil.allStationsXml == null) {
             StationUtil.allStationsXml = allStationsXml;
             XmlParser.parseAllStationXml(allStationsXml, mapOfStations);
+            for (Map.Entry<String, Station> entry : mapOfStations.entrySet()) {
+                listStation.add(entry.getValue());
+            }
         }
     }
 
     public List<Station> getAllStation() {
-        List<Station> listStation = new ArrayList<Station>();
-
-        for (Map.Entry<String, Station> entry : mapOfStations.entrySet()) {
-            listStation.add(entry.getValue());
-        }
-
-        return listStation;
+       return listStation;
     }
 
     public void setCurrentStation(String currentStation){

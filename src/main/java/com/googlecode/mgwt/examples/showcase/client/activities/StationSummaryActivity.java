@@ -1,7 +1,6 @@
 package com.googlecode.mgwt.examples.showcase.client.activities;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
 import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
@@ -9,6 +8,7 @@ import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionEvent;
 import com.googlecode.mgwt.examples.showcase.client.event.ActionNames;
 import com.googlecode.mgwt.examples.showcase.client.event.StationSelectedEvent;
+import com.googlecode.mgwt.examples.showcase.client.model.Station;
 import com.googlecode.mgwt.examples.showcase.client.views.StationSummaryView;
 import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
@@ -45,16 +45,11 @@ public class StationSummaryActivity extends MGWTAbstractActivity {
 
                     @Override
                     public void onCellSelected(CellSelectedEvent event) {
-//                        int index = event.getIndex();
-                        Window.alert(event.getTargetElement().toString());
-
-//                        Document messageDom = XMLParser.parse(event.getTargetElement().toString());
-//                        String stationName = messageDom.getDocumentElement().getElementsByTagName("div").item(0).getFirstChild().getNodeValue();
-//                        System.out.println("Cell Selected Event:" + event.getTargetElement().toString());
-                        String targetElement = event.getTargetElement().toString();
-                        int index = targetElement.indexOf(">");
-                        int endIndex = targetElement.lastIndexOf("<");
-                        String stationName = targetElement.substring(index + 1, endIndex).trim();
+                        int index = event.getIndex();
+//                        Window.alert(event.getTargetElement().toString());
+                        Station station = clientFactory.getStationUtil().getAllStation().get(index);
+                        String stationName = station.getDescription();
+                        System.out.println("index: " + index + ", selected Station Name: " + stationName);
                         StationSelectedEvent.fire(eventBus, stationName);
                     }
                 }));
