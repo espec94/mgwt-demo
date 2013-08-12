@@ -5,11 +5,11 @@ import com.google.gwt.maps.client.InfoWindowContent;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.Maps;
 import com.google.gwt.maps.client.control.LargeMapControl;
+import com.google.gwt.maps.client.event.MarkerClickHandler;
 import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.model.StationData;
@@ -110,9 +110,19 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
                 map.addControl(new LargeMapControl());
 
                 // Add a marker
-                for (TrainPosition current : trainPositionList) {
-                    Marker currentMarker = new Marker(LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude()));
+                for (final TrainPosition current : trainPositionList) {
+                    final LatLng currentLatLng = LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude());
+                    final Marker currentMarker = new Marker(currentLatLng);
                     map.addOverlay(currentMarker);
+
+                    currentMarker.addMarkerClickHandler(new MarkerClickHandler() {
+                        @Override
+                        public void onClick(MarkerClickEvent markerClickEvent) {
+                            //To change body of implemented methods use File | Settings | File Templates.
+                            map.setCenter(currentLatLng);
+                            currentMarker.showMapBlowup(new InfoWindowContent(current.getTrainCode()));
+                        }
+                    });
                 }
 
                 // Add an info window to highlight a point of interest
