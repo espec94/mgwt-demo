@@ -8,6 +8,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
 import com.googlecode.mgwt.examples.showcase.client.common.ApplicationConstants;
 import com.googlecode.mgwt.examples.showcase.client.model.StationData;
+import com.googlecode.mgwt.examples.showcase.client.model.TrainInfo;
 import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
 import com.googlecode.mgwt.examples.showcase.client.utils.XmlParser;
 import com.googlecode.mgwt.examples.showcase.client.views.StationDetailsView;
@@ -35,19 +36,14 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
         super.start(panel, eventBus);
         StationDetailsView view = clientFactory.getStationDetailsView();
 
-        //init train information in tabpanel
+        //init train information in tab panel
         String stationDesc = clientFactory.getStationUtil().getCurrentStation();
         view.setTitle(stationDesc);
 
         final String URIToGetTrains = ApplicationConstants.BASE_URL + "/" + ApplicationConstants.GET_STATION_DATA_BY_NAME + "?" + ApplicationConstants.STATION_DESC + "=" + stationDesc;
-        logger.info("Sending HTTP GET request:" + URIToGetTrains + " to get train details from" + stationDesc + " station.");
+        logger.info("Sending HTTP GET request:" + URIToGetTrains + " to get train details from " + stationDesc + " station.");
         RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URIToGetTrains);
-        httpGetToGetTrainsInfo(builder);
-
-        final String URIToGetTrainsForCurrentStation = ApplicationConstants.BASE_URL + "/" + ApplicationConstants.GET_CURRENT_TRAIN_XML;
-        logger.info("Sending HTTP GET request:" + URIToGetTrainsForCurrentStation + " to get current trains.");
-        RequestBuilder builder2 = new RequestBuilder(RequestBuilder.GET, URIToGetTrainsForCurrentStation);
-        httpGetToGetTrainsForCurrentStation(builder2);
+        httpGetForTrainsOfCurrentStation(builder);
 
         view.getTabpanel().addSelectionHandler(new SelectionHandler<Integer>() {
             @Override
@@ -62,7 +58,7 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
 
     }
 
-    private void httpGetToGetTrainsForCurrentStation(RequestBuilder builder) {
+    private void httpGetForAllTrains(RequestBuilder builder) {
         try {
             builder.setTimeoutMillis(5000);
             Request response = builder.sendRequest(null, new RequestCallback() {
@@ -75,7 +71,7 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
                     if (200 == response.getStatusCode()) {
                         String responseText = response.getText();
                         XmlParser.parseTrainPositionsXml(responseText, listTrainPosition);
-                        List<TrainPosition> trainsRelatedToCurrentStation = getRunningTrainsFromCurrentStation(listStationData, listTrainPosition);
+                        List<TrainInfo> trainsRelatedToCurrentStation = getRunningTrainsForCurrentStation(listStationData, listTrainPosition);
 
                         //create a list of LatLng to mark it onto the map
                         clientFactory.getStationDetailsView().setOverraysOnMap(trainsRelatedToCurrentStation);
@@ -90,7 +86,7 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
         }
     }
 
-    private void httpGetToGetTrainsInfo(RequestBuilder builder) {
+    private void httpGetForTrainsOfCurrentStation(RequestBuilder builder) {
         try {
             builder.setTimeoutMillis(5000);
             Request response = builder.sendRequest(null, new RequestCallback() {
@@ -104,6 +100,14 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
                         String responseText = response.getText();
                         XmlParser.parseStationDataXml(responseText, listStationData);
                         clientFactory.getStationDetailsView().setTrainList(listStationData);
+
+                        //Since GWT doesn't support synchronoss call, I need to send another HTTP GET request from here
+
+                        final String URIToGetTrainsForCurrentStation = ApplicationConstants.BASE_URL + "/" + ApplicationConstants.GET_CURRENT_TRAIN_XML;
+                        logger.info("Sending HTTP GET request:" + URIToGetTrainsForCurrentStation + " to get current trains.");
+                        RequestBuilder builder2 = new RequestBuilder(RequestBuilder.GET, URIToGetTrainsForCurrentStation);
+                        httpGetForAllTrains(builder2);
+
                     } else {
                         // Handle the error.  Can get the status text from response.getStatusText()
                         logger.severe("HTTP error code:" + response.getStatusCode() + "," + response.getStatusText());
@@ -115,13 +119,18 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
         }
     }
 
-    private List<TrainPosition> getRunningTrainsFromCurrentStation(List<StationData> listStationData, Map<String, TrainPosition> listTrainPosition) {
-        List<TrainPosition> result = new ArrayList<TrainPosition>();
+    private List<TrainInfo> getRunningTrainsForCurrentStation(List<StationData> listStationData, Map<String, TrainPosition> listTrainPosition) {
+        List<TrainInfo> result = new ArrayList<TrainInfo>();
 
         for (StationData current : listStationData) {
             TrainPosition trainPosition = listTrainPosition.get(current.getTrainCode());
             if (trainPosition != null) {
-                result.add(trainPosition);
+                TrainInfo trainInfo = new TrainInfo();
+                trainInfo.setTrainPosition(trainPosition);
+                trainInfo.setDestination(current.getDestination());
+                trainInfo.setDirection(current.getDirection());
+                trainInfo.setDueIn(current.getDueIn());
+                result.add(trainInfo);
             }
         }
         return result;

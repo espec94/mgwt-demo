@@ -4,7 +4,7 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.maps.client.InfoWindowContent;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.Maps;
-import com.google.gwt.maps.client.control.LargeMapControl;
+import com.google.gwt.maps.client.control.SmallMapControl;
 import com.google.gwt.maps.client.event.MarkerClickHandler;
 import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.maps.client.overlay.Marker;
@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.model.StationData;
+import com.googlecode.mgwt.examples.showcase.client.model.TrainInfo;
 import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
@@ -45,18 +46,7 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
         scrollPanel.setShowScrollBarY(true);
         scrollPanel.add(trainListLabel);
         tabPanel.add(new BookmarkTabBarButton(), scrollPanel);
-
-        // tabPanel.add(new ContactsTabBarButton(), new Label("Contacts"));
-        // tabPanel.add(new DownloadsTabBarButton(), new Label("Downloads"));
-        // tabPanel.add(new FavoritesTabBarButton(), new Label("Favorites"));
-        // tabPanel.add(new FeaturedTabBarButton(), new Label("Featured"));
-
-
         tabPanel.add(new HistoryTabBarButton(), dock);
-        // tabPanel.add(new MoreTabBarButton(), new Label("More"));
-        // tabPanel.add(new MostRecentTabBarButton(), new Label("Most Recent"));
-        // tabPanel.add(new MostViewedTabBarButton(), new Label("Most Viewed"));
-
         main.add(headerPanel);
         main.add(tabPanel);
     }
@@ -97,42 +87,39 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
     }
 
     @Override
-    public void setOverraysOnMap(final List<TrainPosition> trainPositionList) {
+    public void setOverraysOnMap(final List<TrainInfo> trainInfoList) {
         Maps.loadMapsApi("", "2", false, new Runnable() {
 
             public void run() {
-                // Open a map centered on Satu Mare, Romania
-                LatLng DublinCity = LatLng.newInstance(53.23727683624094, -6.21826171875);
-
-                map = new MapWidget(DublinCity, 8);
+                // Open a map centered on Ireland
+                LatLng ireland = LatLng.newInstance(53.2734, -7.77832031);
+                map = new MapWidget(ireland, 8);
                 map.setSize("100%", "100%");
                 // Add some controls for the zoom level
-                map.addControl(new LargeMapControl());
+                map.addControl(new SmallMapControl());
 
                 // Add a marker
-                for (final TrainPosition current : trainPositionList) {
-                    final LatLng currentLatLng = LatLng.newInstance(current.getTrainLatitude(), current.getTrainLongitude());
+                for (final TrainInfo current : trainInfoList) {
+                    final LatLng currentLatLng = LatLng.newInstance(current.getTrainPosition().getTrainLatitude(), current.getTrainPosition().getTrainLongitude());
                     final Marker currentMarker = new Marker(currentLatLng);
                     map.addOverlay(currentMarker);
 
                     currentMarker.addMarkerClickHandler(new MarkerClickHandler() {
                         @Override
                         public void onClick(MarkerClickEvent markerClickEvent) {
-                            //To change body of implemented methods use File | Settings | File Templates.
                             map.setCenter(currentLatLng);
-                            currentMarker.showMapBlowup(new InfoWindowContent(current.getTrainCode()));
+                            map.getInfoWindow().open(currentMarker, new InfoWindowContent("Destination: +" + current.getDestination()));
+//                                    + "Direction: " + current.getDirection()
+//                                    + "Due: " + current.getDueIn()));
                         }
                     });
                 }
 
-                // Add an info window to highlight a point of interest
+                // Add an info window to highlight Ireland location
                 map.getInfoWindow().open(map.getCenter(),
-                        new InfoWindowContent("Dublin is here!"));
+                        new InfoWindowContent("Ireland is here!"));
 
                 dock.addNorth(map, 500);
-
-                // Add the map to the HTML host page
-//                simplePanel.add(map);
             }
         });
     }

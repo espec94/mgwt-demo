@@ -72,7 +72,6 @@ public class XmlParser {
                 String locationtype = getElementAsString(entry, "Locationtype");
 
                 stationDataList.add(new StationData(trainCode, stationFullName, stationCode, queryTime, destination, direction, trainType, dueIn, expectedArrival, scheduledArrival, lastLocation));
-                stationDataList.add(new StationData(trainCode, stationFullName, stationCode, queryTime, destination, direction, trainType, dueIn, expectedArrival, scheduledArrival, lastLocation));
             }
 
         } catch (DOMException e) {
@@ -85,10 +84,10 @@ public class XmlParser {
         try {
             // parse the XML document into a DOM
             Document messageDom = XMLParser.parse(responseText);
-            // find each station in an attribute of the <objStation> tag
+            // find each station in an attribute of the <objTrainPositions> tag
             NodeList nodeList = messageDom.getDocumentElement().getElementsByTagName("objTrainPositions");
 
-            //initialize Station object
+            //initialize TrainPosition object
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Element entry = (Element) nodeList.item(i);
                 String trainStatus = getElementAsString(entry, "TrainStatus");
