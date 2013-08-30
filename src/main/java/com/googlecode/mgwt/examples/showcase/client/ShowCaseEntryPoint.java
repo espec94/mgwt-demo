@@ -22,18 +22,6 @@ import com.googlecode.mgwt.ui.client.util.SuperDevModeUtil;
 public class ShowCaseEntryPoint implements EntryPoint {
 
     private void start() {
-
-        // MGWTColorScheme.setBaseColor("#56a60D");
-        // MGWTColorScheme.setFontColor("#eee");
-        //
-        // MGWTStyle.setTheme(new MGWTColorTheme());
-        //
-        // MGWTStyle.setDefaultBundle((MGWTClientBundle)
-        // GWT.create(MGWTStandardBundle.class));
-        // MGWTStyle.getDefaultClientBundle().getMainCss().ensureInjected();
-
-        // MGWTStyle.setTheme(new CustomTheme());
-
         SuperDevModeUtil.showDevMode();
 
         ViewPort viewPort = new MGWTSettings.ViewPort();

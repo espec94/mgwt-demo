@@ -3,15 +3,10 @@ package com.googlecode.mgwt.examples.showcase.client.model;
 public class Station {
 
     private int id;
-
     private String code;
-
     private String logitude;
-
     private String latitude;
-
     private String description;
-
     private String alias;
 
     public Station(int id, String code, String logitude, String latitude, String description, String alias){
