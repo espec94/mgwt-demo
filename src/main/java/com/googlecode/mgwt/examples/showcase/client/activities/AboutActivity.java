@@ -25,9 +25,7 @@ public class AboutActivity extends DetailActivity {
 		AboutView aboutView = clientFactory.getAboutView();
 
 		aboutView.getBackbuttonText().setText("Home");
-
 		aboutView.getHeader().setText("About");
-
 		aboutView.getMainButtonText().setText("Nav");
 
 		addHandlerRegistration(aboutView.getBackbutton().addTapHandler(new TapHandler() {

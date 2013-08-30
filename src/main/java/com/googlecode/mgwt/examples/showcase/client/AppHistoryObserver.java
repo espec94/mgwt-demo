@@ -12,8 +12,11 @@ import com.googlecode.mgwt.examples.showcase.client.places.*;
 import com.googlecode.mgwt.mvp.client.history.HistoryHandler;
 import com.googlecode.mgwt.mvp.client.history.HistoryObserver;
 
+import java.util.logging.Logger;
+
 public class AppHistoryObserver implements HistoryObserver {
 
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private final ClientFactory clientFactory;
 
     public AppHistoryObserver(final ClientFactory clientFactory) {
@@ -51,7 +54,7 @@ public class AppHistoryObserver implements HistoryObserver {
 
             @Override
             public void onStationSelected(StationSelectedEvent event) {
-                System.out.println("AppHistoryObserver received StationSelectedEvent");
+                logger.info("AppHistoryObserver received StationSelectedEvent");
                 clientFactory.getStationUtil().setCurrentStation(event.getStation());
                 Place place = new StationDetailsPlace();
                 historyHandler.goTo(place);

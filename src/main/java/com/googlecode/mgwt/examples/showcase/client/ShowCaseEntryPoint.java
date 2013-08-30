@@ -19,6 +19,11 @@ import com.googlecode.mgwt.ui.client.MGWTSettings.ViewPort;
 import com.googlecode.mgwt.ui.client.MGWTSettings.ViewPort.DENSITY;
 import com.googlecode.mgwt.ui.client.util.SuperDevModeUtil;
 
+import java.util.logging.Logger;
+
+/**
+ * This is main entry point when GWT start up.
+ */
 public class ShowCaseEntryPoint implements EntryPoint {
 
     private void start() {
@@ -30,7 +35,6 @@ public class ShowCaseEntryPoint implements EntryPoint {
 
         MGWTSettings settings = new MGWTSettings();
         settings.setViewPort(viewPort);
-        settings.setIconUrl("logo.png");
         settings.setAddGlosToIcon(true);
         settings.setFullscreen(true);
         settings.setPreventScrolling(true);
