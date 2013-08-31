@@ -15,7 +15,7 @@ public class StationUtil {
 
     private static List<Station> listStation = new ArrayList<Station>();
 
-    private String currentStation;
+    private Station currentStation;
 
     public StationUtil() {
     }
@@ -34,11 +34,15 @@ public class StationUtil {
        return listStation;
     }
 
-    public void setCurrentStation(String currentStation){
-        this.currentStation = currentStation;
+    public void setCurrentStation(String selectedStation){
+        for(Station current: listStation){
+            if(current.getDescription().equals(selectedStation)){
+                this.currentStation = current;
+            }
+        }
     }
 
-    public String getCurrentStation(){
+    public Station getCurrentStation(){
         return currentStation;
     }
 }

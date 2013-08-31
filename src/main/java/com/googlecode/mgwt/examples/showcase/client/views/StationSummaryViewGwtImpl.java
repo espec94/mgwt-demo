@@ -26,10 +26,8 @@ public class StationSummaryViewGwtImpl implements StationSummaryView {
         headerBackButton = new HeaderButton();
         headerBackButton.setText("Home");
 
-
         headerPanel.setLeftWidget(headerBackButton);
         headerBackButton.setBackButton(true);
-//        headerBackButton.setVisible(!MGWT.getOsDetection().isAndroid());
         headerBackButton.setVisible(true);
 
         main.add(headerPanel);
@@ -63,7 +61,7 @@ public class StationSummaryViewGwtImpl implements StationSummaryView {
 
     @Override
     public void setTitle(String title) {
-        headerPanel.setTitle(title);
+        headerPanel.setCenter(title);
     }
 
     @Override

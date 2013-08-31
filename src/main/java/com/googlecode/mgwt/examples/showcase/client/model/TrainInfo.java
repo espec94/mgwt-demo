@@ -7,6 +7,7 @@ public class TrainInfo {
     private String destination;
     private String direction;
     private int dueIn;
+    private String selectedStation;
 
     public TrainPosition getTrainPosition() {
         return trainPosition;
@@ -38,5 +39,13 @@ public class TrainInfo {
 
     public void setDueIn(int dueIn) {
         this.dueIn = dueIn;
+    }
+
+    public String getSelectedStation() {
+        return selectedStation;
+    }
+
+    public void setSelectedStation(String selectedStation) {
+        this.selectedStation = selectedStation;
     }
 }

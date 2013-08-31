@@ -12,14 +12,14 @@ import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.examples.showcase.client.model.Station;
 import com.googlecode.mgwt.examples.showcase.client.model.StationData;
 import com.googlecode.mgwt.examples.showcase.client.model.TrainInfo;
-import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
 import com.googlecode.mgwt.ui.client.widget.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.LayoutPanel;
 import com.googlecode.mgwt.ui.client.widget.ScrollPanel;
-import com.googlecode.mgwt.ui.client.widget.tabbar.BookmarkTabBarButton;
-import com.googlecode.mgwt.ui.client.widget.tabbar.HistoryTabBarButton;
+import com.googlecode.mgwt.ui.client.widget.tabbar.FeaturedTabBarButton;
+import com.googlecode.mgwt.ui.client.widget.tabbar.MoreTabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
 
 import java.util.List;
@@ -35,18 +35,18 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
     private DockLayoutPanel dock;
     private ScrollPanel scrollPanel;
 
-
     public StationDetailsViewGwtImpl() {
         main = new LayoutPanel();
         headerPanel = new HeaderPanel();
+        headerPanel.setVisible(true);
         tabPanel = new TabPanel();
         trainListLabel = new HTML("Initial page");
         dock = new DockLayoutPanel(Style.Unit.PX);
         scrollPanel = new ScrollPanel();
         scrollPanel.setShowScrollBarY(true);
         scrollPanel.add(trainListLabel);
-        tabPanel.add(new BookmarkTabBarButton(), scrollPanel);
-        tabPanel.add(new HistoryTabBarButton(), dock);
+        tabPanel.add(new MoreTabBarButton(), scrollPanel);
+        tabPanel.add(new FeaturedTabBarButton(), dock);
         main.add(headerPanel);
         main.add(tabPanel);
     }
@@ -83,17 +83,17 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
 
     @Override
     public void setTitle(String title) {
-        headerPanel.setTitle(title);
+        headerPanel.setCenter(title);
     }
 
     @Override
-    public void setOverraysOnMap(final List<TrainInfo> trainInfoList) {
+    public void setOverraysOnMap(final List<TrainInfo> trainInfoList, final Station station) {
         Maps.loadMapsApi("", "2", false, new Runnable() {
 
             public void run() {
-                // Open a map centered on Ireland
-                LatLng ireland = LatLng.newInstance(53.2734, -7.77832031);
-                map = new MapWidget(ireland, 8);
+                // Open a map centered on current Station
+                LatLng stationLatLng = LatLng.newInstance(Double.parseDouble(station.getLatitude()),Double.parseDouble(station.getLogitude()));
+                map = new MapWidget(stationLatLng, 10);
                 map.setSize("100%", "100%");
                 // Add some controls for the zoom level
                 map.addControl(new SmallMapControl());
@@ -108,17 +108,16 @@ public class StationDetailsViewGwtImpl implements StationDetailsView {
                         @Override
                         public void onClick(MarkerClickEvent markerClickEvent) {
                             map.setCenter(currentLatLng);
-                            map.getInfoWindow().open(currentMarker, new InfoWindowContent("Destination: +" + current.getDestination()));
-//                                    + "Direction: " + current.getDirection()
-//                                    + "Due: " + current.getDueIn()));
+                            map.getInfoWindow().open(currentMarker, new InfoWindowContent("Destination to " + current.getDestination()
+                                    + " and due in " + current.getDueIn()
+                                    + " min " + current.getSelectedStation()));
                         }
                     });
                 }
 
                 // Add an info window to highlight Ireland location
                 map.getInfoWindow().open(map.getCenter(),
-                        new InfoWindowContent("Ireland is here!"));
-
+                        new InfoWindowContent(station.getDescription() + " is here!"));
                 dock.addNorth(map, 500);
             }
         });

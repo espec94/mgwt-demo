@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.examples.showcase.client.ClientFactory;
 import com.googlecode.mgwt.examples.showcase.client.common.ApplicationConstants;
+import com.googlecode.mgwt.examples.showcase.client.model.Station;
 import com.googlecode.mgwt.examples.showcase.client.model.StationData;
 import com.googlecode.mgwt.examples.showcase.client.model.TrainInfo;
 import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
@@ -35,13 +36,12 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
     public void start(AcceptsOneWidget panel, final EventBus eventBus) {
         super.start(panel, eventBus);
         StationDetailsView view = clientFactory.getStationDetailsView();
-
         //init train information in tab panel
-        String stationDesc = clientFactory.getStationUtil().getCurrentStation();
-        view.setTitle(stationDesc);
+        Station station = clientFactory.getStationUtil().getCurrentStation();
+        view.setTitle(station.getDescription() + " Information");
 
-        final String URIToGetTrains = ApplicationConstants.BASE_URL + "/" + ApplicationConstants.GET_STATION_DATA_BY_NAME + "?" + ApplicationConstants.STATION_DESC + "=" + stationDesc;
-        logger.info("Sending HTTP GET request:" + URIToGetTrains + " to get train details from " + stationDesc + " station.");
+        final String URIToGetTrains = ApplicationConstants.BASE_URL + "/" + ApplicationConstants.GET_STATION_DATA_BY_NAME + "?" + ApplicationConstants.STATION_DESC + "=" + station.getDescription();
+        logger.info("Sending HTTP GET request:" + URIToGetTrains + " to get train details from " + station.getDescription() + " station.");
         RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, URIToGetTrains);
         httpGetForTrainsOfCurrentStation(builder);
 
@@ -50,7 +50,7 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
             public void onSelection(SelectionEvent<Integer> integerSelectionEvent) {
                 //To change body of implemented methods use File | Settings | File Templates.
                 int tabId = integerSelectionEvent.getSelectedItem();
-                System.out.println("tab selected" + tabId);
+                logger.info("Tab selected: " + tabId);
             }
         });
 
@@ -74,7 +74,8 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
                         List<TrainInfo> trainsRelatedToCurrentStation = getRunningTrainsForCurrentStation(listStationData, listTrainPosition);
 
                         //create a list of LatLng to mark it onto the map
-                        clientFactory.getStationDetailsView().setOverraysOnMap(trainsRelatedToCurrentStation);
+                        Station currentStation = clientFactory.getStationUtil().getCurrentStation();
+                        clientFactory.getStationDetailsView().setOverraysOnMap(trainsRelatedToCurrentStation, currentStation);
                     } else {
                         // Handle the error.  Can get the status text from response.getStatusText()
                         logger.severe("HTTP error code:" + response.getStatusCode() + "," + response.getStatusText());
@@ -130,6 +131,7 @@ public class StationDetailsActivity extends MGWTAbstractActivity {
                 trainInfo.setDestination(current.getDestination());
                 trainInfo.setDirection(current.getDirection());
                 trainInfo.setDueIn(current.getDueIn());
+                trainInfo.setSelectedStation(current.getStationFullName());
                 result.add(trainInfo);
             }
         }
