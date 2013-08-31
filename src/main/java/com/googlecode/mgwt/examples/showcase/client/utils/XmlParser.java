@@ -7,6 +7,7 @@ import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class XmlParser {
 
@@ -33,12 +34,12 @@ public class XmlParser {
             }
 
         } catch (DOMException e) {
+
         }
     }
 
     public static void parseStationDataXml(String messageXml, List stationDataList) {
         try {
-//            Window.alert("parseStationDataXml");
             // parse the XML document into a DOM
             Document messageDom = XMLParser.parse(messageXml);
 
@@ -71,36 +72,22 @@ public class XmlParser {
                 String locationtype = getElementAsString(entry, "Locationtype");
 
                 stationDataList.add(new StationData(trainCode, stationFullName, stationCode, queryTime, destination, direction, trainType, dueIn, expectedArrival, scheduledArrival, lastLocation));
-                stationDataList.add(new StationData(trainCode, stationFullName, stationCode, queryTime, destination, direction, trainType, dueIn, expectedArrival, scheduledArrival, lastLocation));
             }
 
         } catch (DOMException e) {
-            e.getMessage();
+
         }
-
-    }
-
-    private static String getElementAsString(Element messageDom, String tagName) {
-
-        Node node = messageDom.getElementsByTagName(tagName).item(0).getFirstChild();
-        if (node == null) {
-            return "";
-        }
-        ;
-
-        return node.getNodeValue().trim();
 
     }
 
     public static void parseTrainPositionsXml(String responseText, Map<String, TrainPosition> listTrainPosition) {
         try {
-//            Window.alert("parseTrainPositionsXml");
             // parse the XML document into a DOM
             Document messageDom = XMLParser.parse(responseText);
-            // find each station in an attribute of the <objStation> tag
+            // find each station in an attribute of the <objTrainPositions> tag
             NodeList nodeList = messageDom.getDocumentElement().getElementsByTagName("objTrainPositions");
 
-            //initialize Station object
+            //initialize TrainPosition object
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Element entry = (Element) nodeList.item(i);
                 String trainStatus = getElementAsString(entry, "TrainStatus");
@@ -115,7 +102,16 @@ public class XmlParser {
             }
 
         } catch (DOMException e) {
+
         }
 
+    }
+
+    private static String getElementAsString(Element messageDom, String tagName) {
+        Node node = messageDom.getElementsByTagName(tagName).item(0).getFirstChild();
+        if (node == null) {
+            return "";
+        }
+        return node.getNodeValue().trim();
     }
 }

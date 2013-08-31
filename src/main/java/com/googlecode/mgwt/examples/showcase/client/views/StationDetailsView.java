@@ -3,7 +3,7 @@ package com.googlecode.mgwt.examples.showcase.client.views;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.examples.showcase.client.model.StationData;
-import com.googlecode.mgwt.examples.showcase.client.model.TrainPosition;
+import com.googlecode.mgwt.examples.showcase.client.model.TrainInfo;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
 
 import java.util.List;
@@ -18,5 +18,5 @@ public interface StationDetailsView extends IsWidget {
 
     public void setTrainList(List<StationData> trainList);
 
-    public void setOverraysOnMap(List<TrainPosition> trainPositionsList);
+    public void setOverraysOnMap(List<TrainInfo> trainPositionsList);
 }

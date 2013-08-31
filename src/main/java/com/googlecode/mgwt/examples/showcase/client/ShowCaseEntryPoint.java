@@ -19,21 +19,14 @@ import com.googlecode.mgwt.ui.client.MGWTSettings.ViewPort;
 import com.googlecode.mgwt.ui.client.MGWTSettings.ViewPort.DENSITY;
 import com.googlecode.mgwt.ui.client.util.SuperDevModeUtil;
 
+import java.util.logging.Logger;
+
+/**
+ * This is main entry point when GWT start up.
+ */
 public class ShowCaseEntryPoint implements EntryPoint {
 
     private void start() {
-
-        // MGWTColorScheme.setBaseColor("#56a60D");
-        // MGWTColorScheme.setFontColor("#eee");
-        //
-        // MGWTStyle.setTheme(new MGWTColorTheme());
-        //
-        // MGWTStyle.setDefaultBundle((MGWTClientBundle)
-        // GWT.create(MGWTStandardBundle.class));
-        // MGWTStyle.getDefaultClientBundle().getMainCss().ensureInjected();
-
-        // MGWTStyle.setTheme(new CustomTheme());
-
         SuperDevModeUtil.showDevMode();
 
         ViewPort viewPort = new MGWTSettings.ViewPort();
@@ -42,7 +35,6 @@ public class ShowCaseEntryPoint implements EntryPoint {
 
         MGWTSettings settings = new MGWTSettings();
         settings.setViewPort(viewPort);
-        settings.setIconUrl("logo.png");
         settings.setAddGlosToIcon(true);
         settings.setFullscreen(true);
         settings.setPreventScrolling(true);

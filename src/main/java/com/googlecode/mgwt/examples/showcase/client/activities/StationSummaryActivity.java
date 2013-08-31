@@ -14,8 +14,11 @@ import com.googlecode.mgwt.mvp.client.MGWTAbstractActivity;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedEvent;
 import com.googlecode.mgwt.ui.client.widget.celllist.CellSelectedHandler;
 
+import java.util.logging.Logger;
+
 public class StationSummaryActivity extends MGWTAbstractActivity {
 
+    private Logger logger = Logger.getLogger(this.getClass().getName());
     private final ClientFactory clientFactory;
 
     public StationSummaryActivity(ClientFactory clientFactory) {
@@ -46,10 +49,9 @@ public class StationSummaryActivity extends MGWTAbstractActivity {
                     @Override
                     public void onCellSelected(CellSelectedEvent event) {
                         int index = event.getIndex();
-//                        Window.alert(event.getTargetElement().toString());
                         Station station = clientFactory.getStationUtil().getAllStation().get(index);
                         String stationName = station.getDescription();
-                        System.out.println("index: " + index + ", selected Station Name: " + stationName);
+                        logger.info("Clicked a " + stationName + " station");
                         StationSelectedEvent.fire(eventBus, stationName);
                     }
                 }));
