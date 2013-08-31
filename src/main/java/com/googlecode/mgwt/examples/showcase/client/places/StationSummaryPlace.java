@@ -5,7 +5,7 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class StationSummaryPlace extends Place {
 
-    public static class TestPlaceTokenizer implements PlaceTokenizer<StationSummaryPlace> {
+    public static class StationSummaryPlaceTokenizer implements PlaceTokenizer<StationSummaryPlace> {
 
         @Override
         public StationSummaryPlace getPlace(String token) {
